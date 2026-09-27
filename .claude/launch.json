@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portafolio",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["herramientas/servidor.mjs", "8787"],
+      "port": 8787
+    }
+  ]
+}

@@ -220,7 +220,13 @@ strong{ font-weight:700; color:var(--ink); }
 .caja-form{
   background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg);
   padding:clamp(24px,3vw,38px); box-shadow:var(--shadow-lg);
+  /* La caja es blanca aunque esté apoyada sobre una sección oscura: sin esto,
+     los títulos de adentro heredan el color claro y quedan ilegibles. */
+  color:var(--ink);
 }
+/* .seccion-oscura h3 pinta los títulos de blanco. Dentro de la caja blanca
+   hay que ganarle: mismo peso de selector, pero declarado después. */
+.caja-form h1,.caja-form h2,.caja-form h3,.caja-form h4{ color:var(--ink); }
 .campos{ display:grid; gap:16px; }
 .campos-2{ grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); }
 .campo{ display:block; }
@@ -235,6 +241,8 @@ strong{ font-weight:700; color:var(--ink); }
   outline:none; border-color:var(--brand); box-shadow:0 0 0 3px rgba(17,75,95,.14);
 }
 .campo textarea{ min-height:108px; resize:vertical; }
+/* El gris por defecto de los navegadores no llega a 4.5:1 sobre blanco */
+.campo ::placeholder{ color:#6F7776; opacity:1; }
 .campo input[type="file"]{ padding:11px 13px; background:var(--surface-alt); cursor:pointer; }
 
 .consentimiento{

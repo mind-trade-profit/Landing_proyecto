@@ -136,11 +136,12 @@ const CONFIG = {
 .garantia p{ color:var(--ink-soft); margin:0; }
 
 /* --- 6. CIERRE + FORMULARIO --------------------------------------------- */
-.cierre{ background:var(--brand-700); color:#EAF2F5; }
+/* Lleva también la clase .seccion-oscura: de ahí saca el color del rótulo,
+   del título y del texto, ya resueltos para fondo oscuro en base.css */
+.cierre{ background:var(--brand-700); }
 .cierre-grilla{ display:grid; gap:clamp(30px,4vw,54px); grid-template-columns:1fr; align-items:start; }
 @media (min-width:980px){ .cierre-grilla{ grid-template-columns:.95fr 1.05fr; } }
-.cierre h2{ color:#fff; margin-bottom:16px; }
-.cierre .lead{ color:#C9DCE4; }
+.cierre h2{ margin-bottom:16px; }
 .otras-vias{ margin-top:28px; display:grid; gap:12px; }
 .via{
   display:flex; align-items:center; gap:13px; padding:14px 16px;
@@ -513,7 +514,7 @@ const CONFIG = {
 <!-- ============================================================================
      9. CIERRE — formulario corto + agenda + WhatsApp
      ============================================================================ -->
-<section class="seccion cierre" id="contacto">
+<section class="seccion seccion-oscura cierre" id="contacto">
   <div class="wrap cierre-grilla">
     <div>
       <span class="eyebrow">Pedir propuesta</span>
