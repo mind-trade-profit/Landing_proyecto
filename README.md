@@ -49,6 +49,8 @@ landings-rrhh/
     03-taller-webinar/index.html
     04-candidatos/index.html
   legal/politica-privacidad.html  modelo sobre la Ley 25.326
+  ficha/ficha-referidor.html      la hoja que le das al cliente referidor
+  ficha/ficha-referidor.pdf       la misma, lista para reenviar por WhatsApp
   herramientas/
     servidor.mjs                  servidor estático para ver el sitio por HTTP
     capturar.mjs                  capturas + chequeo de contraste, desbordes y errores
@@ -56,6 +58,7 @@ landings-rrhh/
     pruebas.mjs                   control funcional: barra, formularios, filtros
     og.mjs + plantilla-og.html    las imágenes de vista previa de 1200x630
     configurar.mjs                pone el WhatsApp real y la dirección final
+    ficha.mjs                     convierte la ficha del referidor en PDF
 ```
 
 Cada landing es un archivo HTML con su propio `<style>`. Lo que comparten las cuatro vive en
@@ -138,6 +141,25 @@ La barra recalcula sola el "5 de 5", las flechas y el orden.
 
 ---
 
+## La ficha del referidor
+
+`ficha/ficha-referidor.pdf` es la hoja de una página que le das al cliente que te va a recomendar:
+las 4 landings, los paquetes, su comisión del 15 % y el mensaje listo para reenviar. Se regenera
+después de tocar el HTML:
+
+```bash
+node herramientas/ficha.mjs
+```
+
+Avisa si el contenido se fue de una página, que es lo único que no puede pasar: una ficha de dos
+hojas no se reenvía.
+
+> **Ojo con los precios.** La ficha los tiene. Si no querés que sean públicos, sumá `ficha/` al
+> `.gitignore` **antes** de publicar el repositorio y mandá el PDF por WhatsApp. Lo que está en un
+> repositorio público lo ve cualquiera, aunque no haya ningún link que lleve hasta ahí.
+
+---
+
 ## Antes de publicar: el WhatsApp y la dirección
 
 Son los dos datos repartidos en varios archivos. Se cambian de una:
@@ -186,4 +208,6 @@ alojamiento del cliente.
 - [ ] Correr `configurar.mjs` con el WhatsApp real y la dirección definitiva.
 - [ ] Armar el PDF de la landing 02 (hoy el botón de descarga avisa que es una demo).
 - [x] Imágenes `og:` de 1200×630 para la vista previa al compartir los links.
-- [ ] Ficha de una página en PDF para que el referidor la reenvíe.
+- [x] Ficha de una página en PDF para que el referidor la reenvíe.
+- [ ] Decidir si `ficha/` se publica o queda fuera del repositorio (tiene los precios).
+- [ ] Completar el WhatsApp en la ficha y volver a generar el PDF.
