@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================================
+     LANDING 1 de 4 — PEDIDO DE PROPUESTA (empresas · etapa de decisión)
+     Objetivo: que una empresa con una vacante abierta pida una propuesta.
+     Métrica: consultas calificadas por mes.
+     ---------------------------------------------------------------------------
+     DEMO: Talento Norte Consultores es una consultora FICTICIA. Logos,
+     testimonios y números están marcados como ejemplo y el formulario no envía
+     datos a ningún lado.
+     ============================================================================ -->
+
+<title>Cubrimos tu vacante en 15 días | Talento Norte Consultores</title>
+<meta name="description" content="Búsqueda y selección para pymes e industrias del NOA: te presentamos tres finalistas evaluados en 15 días y reponemos sin cargo si no pasa la prueba.">
+<!-- En la demo va noindex para que una consultora ficticia no aparezca en Google.
+     En la landing real del cliente: cambiar a "index, follow". -->
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://mind-trade-profit.github.io/landings-rrhh/landings/01-pedido-propuesta/">
+
+<!-- Vista previa al pegar el link en WhatsApp o LinkedIn.
+     og:image tiene que ser una URL absoluta de 1200x630. Pendiente: generar
+     assets/img/og-01.png y descomentar las dos líneas de abajo. -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Talento Norte Consultores">
+<meta property="og:title" content="Cubrimos tu vacante con tres finalistas evaluados">
+<meta property="og:description" content="Búsqueda y selección para pymes e industrias del NOA. Vos entrevistás sólo a los que llegan al final.">
+<!-- <meta property="og:image" content="https://mind-trade-profit.github.io/landings-rrhh/assets/img/og-01.png"> -->
+<!-- <meta name="twitter:card" content="summary_large_image"> -->
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23114B5F'/%3E%3Cpath d='M20 7 23 16 32 19 23 22 20 31 17 22 8 19 17 16Z' fill='%23C9611F'/%3E%3C/svg%3E">
+
+<!-- Marca que hay JavaScript. Sin esto, las secciones con animación de entrada
+     quedarían invisibles si el JS falla: con esto, se ven igual. -->
+<script>document.documentElement.className += ' js';</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../assets/css/base.css">
+
+<!-- ============================================================================
+     DATOS DE CONTACTO — ⚠️ ES LO ÚNICO QUE HAY QUE TOCAR PARA CAMBIAR DE CLIENTE.
+     WhatsApp con código de país y SIN +, espacios ni guiones:
+       Argentina: 54 + 9 + código de área sin 0 + número sin 15
+       (0387) 15-456-7890  ->  5493874567890
+     ============================================================================ -->
+<script>
+const CONFIG = {
+  whatsapp:        '5493870000000',
+  mensajeWhatsApp: 'Hola! Tengo una búsqueda abierta y quiero pedir una propuesta.',
+  telefono:        '+543870000000',
+  email:           'empresas@talentonorte.com.ar',
+  agenda:          '#contacto'   /* en la landing real: link de Calendly */
+};
+</script>
+
+<style>
+/* ============================================================================
+   CSS propio de esta landing. Todo lo compartido está en assets/css/base.css
+   ============================================================================ */
+
+/* --- 1. PORTADA ----------------------------------------------------------- */
+.hero{ padding:clamp(44px,6vw,86px) 0 clamp(52px,6vw,90px); }
+.hero-grilla{ display:grid; gap:clamp(32px,4vw,56px); align-items:center; grid-template-columns:1fr; }
+@media (min-width:980px){ .hero-grilla{ grid-template-columns:1.05fr .95fr; } }
+.hero h1{ margin-bottom:20px; }
+.hero h1 em{ font-style:normal; color:var(--accent); }
+.hero .lead{ margin-bottom:28px; }
+.chip-zona{
+  display:inline-flex; align-items:center; gap:8px; margin-bottom:18px;
+  background:var(--brand-100); color:var(--brand); border-radius:999px;
+  padding:7px 15px; font-size:.86rem; font-weight:600;
+}
+.chip-zona svg{ width:15px; height:15px; }
+
+/* --- 2. MAQUETA DE LA TERNA FINAL (reemplaza a la foto de stock) ---------- */
+.terna{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg); padding:22px; position:relative;
+}
+.terna-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+.terna-top h3{ font-size:1.02rem; }
+.terna-top span{ font-size:.78rem; color:var(--ink-faint); }
+.terna-sub{ font-size:.84rem; color:var(--ink-faint); margin-bottom:18px; }
+.candidato{
+  display:flex; align-items:center; gap:13px; padding:13px 0;
+  border-top:1px solid var(--line);
+}
+.candidato .inicial{
+  width:42px; height:42px; border-radius:12px; background:var(--brand-100); color:var(--brand);
+  display:grid; place-items:center; font-weight:700; font-size:.92rem; flex:none;
+}
+.candidato .datos{ flex:1; min-width:0; }
+.candidato b{ display:block; font-size:.96rem; }
+.candidato small{ color:var(--ink-faint); font-size:.82rem; }
+.puntaje{
+  font-family:var(--font-title); font-weight:700; font-size:1.05rem; color:var(--brand);
+  background:var(--brand-100); border-radius:9px; padding:5px 11px; flex:none;
+}
+.terna-pie{
+  margin-top:16px; padding-top:14px; border-top:1px solid var(--line);
+  display:flex; align-items:center; gap:9px; font-size:.84rem; color:var(--ok); font-weight:600;
+}
+.terna-pie svg{ width:17px; height:17px; }
+
+/* --- 3. FRANJA DE DATOS CLAVE -------------------------------------------- */
+.franja{ background:var(--brand); color:#EAF2F5; padding:clamp(26px,3.4vw,40px) 0; }
+.franja .metrica b{ color:#fff; }
+.franja .metrica span{ color:#B8CFD8; }
+.franja-nota{ text-align:center; margin-top:20px; font-size:.8rem; color:#9FBDC8; }
+
+/* --- 4. EL PROBLEMA ------------------------------------------------------ */
+.costo{ border-left:3px solid var(--accent-soft); padding-left:20px; }
+.costo h3{ font-size:1.04rem; margin-bottom:8px; }
+.costo p{ color:var(--ink-soft); font-size:.97rem; margin:0; }
+
+/* --- 5. GARANTÍA --------------------------------------------------------- */
+.garantia{
+  display:grid; gap:clamp(22px,3vw,38px); align-items:center; grid-template-columns:1fr;
+  background:var(--brand-100); border:1px solid #C7DDE5; border-radius:var(--radius-lg);
+  padding:clamp(26px,3.4vw,44px);
+}
+@media (min-width:860px){ .garantia{ grid-template-columns:auto 1fr; } }
+.garantia .sello{
+  width:96px; height:96px; border-radius:50%; background:var(--brand); color:#fff;
+  display:grid; place-items:center; margin-inline:auto;
+}
+.garantia .sello svg{ width:46px; height:46px; }
+.garantia h2{ font-size:clamp(1.4rem,2.6vw,1.9rem); margin-bottom:12px; }
+.garantia p{ color:var(--ink-soft); margin:0; }
+
+/* --- 6. CIERRE + FORMULARIO --------------------------------------------- */
+.cierre{ background:var(--brand-700); color:#EAF2F5; }
+.cierre-grilla{ display:grid; gap:clamp(30px,4vw,54px); grid-template-columns:1fr; align-items:start; }
+@media (min-width:980px){ .cierre-grilla{ grid-template-columns:.95fr 1.05fr; } }
+.cierre h2{ color:#fff; margin-bottom:16px; }
+.cierre .lead{ color:#C9DCE4; }
+.otras-vias{ margin-top:28px; display:grid; gap:12px; }
+.via{
+  display:flex; align-items:center; gap:13px; padding:14px 16px;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--radius-sm); font-size:.94rem;
+}
+.via svg{ width:21px; height:21px; flex:none; color:#8FC7DA; }
+.via b{ color:#fff; display:block; font-size:.95rem; }
+.via small{ color:#A8C6D1; }
+.caja-form h3{ margin-bottom:6px; }
+.caja-form .intro{ font-size:.92rem; color:var(--ink-faint); margin-bottom:22px; }
+</style>
+</head>
+
+<body>
+<a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+<!-- ============================================================================
+     ENCABEZADO
+     ============================================================================ -->
+<header class="cabecera">
+  <div class="wrap">
+    <a class="marca" href="#inicio">
+      <img src="../../assets/img/logo-talento-norte.svg" alt="" aria-hidden="true">
+      <span>Talento Norte
+        <small>Consultores en RR. HH. · NOA</small>
+      </span>
+    </a>
+    <nav aria-label="Secciones">
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#clientes">Clientes</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <a class="btn btn-primario" href="#contacto">Pedir propuesta</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- ============================================================================
+     1. PORTADA — promesa concreta + zona + acción principal
+     ============================================================================ -->
+<section class="hero" id="inicio">
+  <div class="wrap hero-grilla">
+    <div>
+      <span class="chip-zona">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Salta · Jujuy · Tucumán
+      </span>
+      <h1>Cubrimos tu vacante con <em>tres finalistas evaluados</em> en 15 días</h1>
+      <p class="lead">Búsqueda y selección para pymes, industrias y agro del NOA. Vos entrevistás
+        solamente a los que llegan al final: el filtro, las referencias y las pruebas los hacemos nosotros.</p>
+      <div class="acciones">
+        <a class="btn btn-primario btn-grande" href="#contacto">Pedir propuesta</a>
+        <a class="btn btn-secundario" href="#proceso">Ver cómo trabajamos</a>
+      </div>
+      <p class="bajo-btn">Respondemos en menos de 24 horas hábiles. La propuesta no tiene costo.</p>
+    </div>
+
+    <!-- Maqueta del entregable. Sin fotos de stock: muestra lo que la empresa recibe. -->
+    <div class="terna reveal" aria-label="Ejemplo de terna final que recibe la empresa">
+      <div class="terna-top">
+        <h3>Terna final</h3>
+        <span>Búsqueda #1042 · Ejemplo</span>
+      </div>
+      <p class="terna-sub">Jefe de Mantenimiento · Planta Güemes · Presencial</p>
+
+      <div class="candidato">
+        <span class="inicial" aria-hidden="true">M.&nbsp;A.</span>
+        <span class="datos">
+          <b>Candidata A</b>
+          <small>9 años en mantenimiento industrial · Técnica electromecánica</small>
+        </span>
+        <span class="puntaje">92</span>
+      </div>
+      <div class="candidato">
+        <span class="inicial" aria-hidden="true">J.&nbsp;P.</span>
+        <span class="datos">
+          <b>Candidato B</b>
+          <small>7 años, dos plantas alimenticias · Gestión de equipos</small>
+        </span>
+        <span class="puntaje">88</span>
+      </div>
+      <div class="candidato">
+        <span class="inicial" aria-hidden="true">R.&nbsp;S.</span>
+        <span class="datos">
+          <b>Candidato C</b>
+          <small>11 años en minería · Disponibilidad para mudarse</small>
+        </span>
+        <span class="puntaje">85</span>
+      </div>
+
+      <p class="terna-pie">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        Referencias laborales verificadas · Informe por candidato
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     2. FRANJA DE DATOS CLAVE — todo rotulado como ejemplo (consultora ficticia)
+     ============================================================================ -->
+<section class="franja" aria-label="Datos de la consultora">
+  <div class="wrap">
+    <div class="metricas">
+      <div class="metrica"><b>15</b><span>días promedio hasta la terna</span></div>
+      <div class="metrica"><b>3</b><span>finalistas por búsqueda</span></div>
+      <div class="metrica"><b>90</b><span>días de reposición sin cargo</span></div>
+      <div class="metrica"><b>140+</b><span>búsquedas cubiertas en el NOA</span></div>
+    </div>
+    <p class="franja-nota"><span class="rotulo-ejemplo">Ejemplo</span> Números de demostración: Talento Norte Consultores es una consultora ficticia.</p>
+  </div>
+</section>
+
+<!-- ============================================================================
+     3. EL PROBLEMA — el costo de una mala contratación y las horas del dueño
+     ============================================================================ -->
+<section class="seccion seccion-clara" id="problema">
+  <div class="wrap">
+    <div class="encabezado-seccion">
+      <span class="eyebrow">Por qué delegarla</span>
+      <h2>Una contratación que sale mal cuesta mucho más que la búsqueda</h2>
+      <p class="lead">No es sólo el sueldo de los meses que estuvo. Es todo lo que se detuvo mientras
+        el puesto estaba vacío y todo lo que hay que volver a hacer desde cero.</p>
+    </div>
+
+    <div class="grilla grilla-3">
+      <div class="costo reveal">
+        <h3>Las horas que pusiste vos</h3>
+        <p>Publicar el aviso, leer 200 CV, contestar mensajes, agendar entrevistas que
+          después no se presentan. Son semanas de tu tiempo, el más caro de la empresa.</p>
+      </div>
+      <div class="costo reveal">
+        <h3>El puesto vacío</h3>
+        <p>Mientras la vacante sigue abierta, el equipo cubre de más, los plazos se estiran
+          y los errores aumentan. Ese costo no aparece en ninguna factura, pero se paga.</p>
+      </div>
+      <div class="costo reveal">
+        <h3>Volver a empezar</h3>
+        <p>Si la persona se va en el período de prueba, se perdió la inducción, la capacitación
+          y la confianza del equipo. Y la búsqueda arranca de nuevo.</p>
+      </div>
+    </div>
+
+    <div class="acciones" style="margin-top:36px">
+      <a class="btn btn-marca" href="#contacto">Contanos qué puesto necesitás cubrir</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     4. PROCESO EN 4 PASOS
+     ============================================================================ -->
+<section class="seccion" id="proceso">
+  <div class="wrap">
+    <div class="encabezado-seccion">
+      <span class="eyebrow">Cómo trabajamos</span>
+      <h2>Cuatro pasos, y vos entrás recién en el último</h2>
+      <p class="lead">Te mantenemos al día por WhatsApp durante toda la búsqueda, sin que tengas
+        que pedir novedades.</p>
+    </div>
+
+    <ol class="pasos">
+      <li class="paso reveal">
+        <h3>Relevamiento del puesto</h3>
+        <p>Una reunión de 45 minutos para entender la tarea real, el equipo, el rango de sueldo
+          y qué tipo de persona funciona en tu empresa. De ahí sale el perfil por escrito.</p>
+      </li>
+      <li class="paso reveal">
+        <h3>Búsqueda y preselección</h3>
+        <p>Base propia del NOA, portales, LinkedIn y contacto directo con perfiles que hoy
+          están trabajando. Filtramos por requisitos excluyentes antes de entrevistar.</p>
+      </li>
+      <li class="paso reveal">
+        <h3>Evaluación y entrevistas</h3>
+        <p>Entrevista por competencias, pruebas técnicas cuando el puesto lo pide, evaluación
+          psicotécnica y verificación de referencias laborales.</p>
+      </li>
+      <li class="paso reveal">
+        <h3>Terna final</h3>
+        <p>Te presentamos tres finalistas con informe de cada uno y nuestra recomendación.
+          Coordinamos tus entrevistas y acompañamos hasta la incorporación.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================================
+     5. SERVICIOS
+     ============================================================================ -->
+<section class="seccion seccion-alt" id="servicios">
+  <div class="wrap">
+    <div class="encabezado-seccion">
+      <span class="eyebrow">Servicios</span>
+      <h2>Tres formas de resolver una vacante</h2>
+    </div>
+
+    <div class="grilla grilla-3">
+      <article class="tarjeta tarjeta-destacada reveal">
+        <div class="icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </div>
+        <h3>Búsqueda y selección</h3>
+        <p>El servicio completo para puestos operativos, técnicos, administrativos y jefaturas.
+          Terna final en 15 días y reposición sin cargo durante el período de prueba.</p>
+        <ul class="lista-tilde" style="margin-top:16px">
+          <li>Perfil por escrito antes de empezar</li>
+          <li>Informe y referencias de cada finalista</li>
+          <li>Honorarios contra incorporación</li>
+        </ul>
+      </article>
+
+      <article class="tarjeta reveal">
+        <div class="icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v8m-4-4h8"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <h3>Personal eventual</h3>
+        <p>Picos de temporada, zafra, inventarios o reemplazos por licencia. La persona trabaja
+          en tu planta y la relación laboral queda a nuestro cargo.</p>
+        <ul class="lista-tilde" style="margin-top:16px">
+          <li>Altas, seguros y liquidación incluidos</li>
+          <li>Reemplazo en 48 horas si hace falta</li>
+        </ul>
+      </article>
+
+      <article class="tarjeta reveal">
+        <div class="icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10m6 10V4m6 16v-7"/></svg>
+        </div>
+        <h3>Búsquedas gerenciales</h3>
+        <p>Gerencias y jefaturas clave, con búsqueda directa y confidencial. Contactamos perfiles
+          que no están mirando avisos.</p>
+        <ul class="lista-tilde" style="margin-top:16px">
+          <li>Proceso confidencial, sin exponer tu marca</li>
+          <li>Mapeo del mercado salarial de la zona</li>
+        </ul>
+      </article>
+    </div>
+
+    <p class="lead" style="margin-top:28px">También cubrimos perfiles IT y tomamos la administración
+      de personal cuando la empresa no tiene un área de RR. HH. propia.
+      <a href="#contacto" style="color:var(--brand);font-weight:600;text-decoration:underline">Preguntanos por tu caso</a>.</p>
+  </div>
+</section>
+
+<!-- ============================================================================
+     6. PRUEBA SOCIAL — en la landing real van logos, nombres y números REALES.
+        Acá todo está rotulado como ejemplo porque la consultora es ficticia.
+     ============================================================================ -->
+<section class="seccion" id="clientes">
+  <div class="wrap">
+    <div class="encabezado-seccion centrado">
+      <span class="eyebrow">Clientes</span>
+      <h2>Empresas que ya delegaron sus búsquedas</h2>
+      <p class="lead">
+        <span class="rotulo-ejemplo">Ejemplo</span>
+        Logos, testimonios y cargos inventados para la demostración.
+      </p>
+    </div>
+
+    <div class="logos" style="margin-bottom:clamp(36px,4.6vw,56px)">
+      <span class="logo-ej">Agroindustria del Valle</span>
+      <span class="logo-ej">Norte Logística</span>
+      <span class="logo-ej">Cervecería Güemes</span>
+      <span class="logo-ej">Textil Calchaquí</span>
+      <span class="logo-ej">Distribuidora Andina</span>
+      <span class="logo-ej">Salta Software</span>
+    </div>
+
+    <div class="grilla grilla-3">
+      <figure class="testimonio reveal">
+        <blockquote>«Habíamos publicado el aviso tres veces y no salía nada. Nos trajeron tres
+          candidatos reales en dos semanas y el que entró sigue hace dos años.»</blockquote>
+        <footer>
+          <span class="inicial" aria-hidden="true">LF</span>
+          <span>Lucía F. · Dueña, Distribuidora Andina <span class="rotulo-ejemplo">Ejemplo</span></span>
+        </footer>
+      </figure>
+
+      <figure class="testimonio reveal">
+        <blockquote>«Lo que más valoro es que entrevisté a tres personas y no a treinta.
+          Me devolvieron las semanas que perdía leyendo CV.»</blockquote>
+        <footer>
+          <span class="inicial" aria-hidden="true">MG</span>
+          <span>Martín G. · Gerente de Planta, Cervecería Güemes <span class="rotulo-ejemplo">Ejemplo</span></span>
+        </footer>
+      </figure>
+
+      <figure class="testimonio reveal">
+        <blockquote>«Necesitábamos 12 personas para la zafra con muy poco aviso. Las tuvimos
+          trabajando en diez días, con todo el papeleo en orden.»</blockquote>
+        <footer>
+          <span class="inicial" aria-hidden="true">CS</span>
+          <span>Carolina S. · RR. HH., Agroindustria del Valle <span class="rotulo-ejemplo">Ejemplo</span></span>
+        </footer>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     7. GARANTÍA
+        ⚠️ Esta sección va SÓLO si la consultora realmente ofrece reposición.
+        Si no la ofrece, se borra completa: prometer lo que no se cumple es peor
+        que no prometer nada.
+     ============================================================================ -->
+<section class="seccion seccion-clara">
+  <div class="wrap">
+    <div class="garantia reveal">
+      <div class="sello" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+      </div>
+      <div>
+        <h2>Si no supera el período de prueba, la búsqueda la hacemos de nuevo</h2>
+        <p>Durante los primeros 90 días, si la persona se va o no funciona, reponemos el puesto
+          sin cobrar honorarios otra vez. Está por escrito en la propuesta, no es un favor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     8. PREGUNTAS FRECUENTES — honorarios, plazos y exclusividad
+     ============================================================================ -->
+<section class="seccion" id="preguntas">
+  <div class="wrap wrap-angosto">
+    <div class="encabezado-seccion">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Lo que todos preguntan antes de empezar</h2>
+    </div>
+
+    <div class="faq">
+      <details open>
+        <summary>¿Cuánto cuesta una búsqueda?</summary>
+        <div class="respuesta">Los honorarios se calculan como un porcentaje del sueldo bruto anual
+          del puesto y se cobran contra la incorporación efectiva de la persona. El número exacto
+          va en la propuesta, junto con el plazo y el alcance. No hay costo por pedirla ni por el
+          relevamiento inicial.</div>
+      </details>
+      <details>
+        <summary>¿En cuánto tiempo tengo candidatos?</summary>
+        <div class="respuesta">La terna final llega en 15 días hábiles promedio desde que aprobás
+          el perfil. Puestos operativos suelen cerrarse antes; gerencias y perfiles muy técnicos
+          pueden llevar de 3 a 5 semanas. El plazo estimado queda escrito en la propuesta.</div>
+      </details>
+      <details>
+        <summary>¿Tengo que darles exclusividad?</summary>
+        <div class="respuesta">No es obligatoria. Podés tener la búsqueda abierta por tu cuenta en
+          paralelo: si la cubrís vos, no pagás honorarios. La exclusividad la pedimos sólo en
+          búsquedas gerenciales confidenciales, donde salir por varios canales expone a la empresa.</div>
+      </details>
+      <details>
+        <summary>¿Trabajan con empresas de otras provincias?</summary>
+        <div class="respuesta">Nuestra base de candidatos es del NOA: Salta, Jujuy y Tucumán, más
+          Santiago del Estero y Catamarca. Tomamos búsquedas de empresas de cualquier lugar del país
+          que necesiten cubrir un puesto en esta región, incluidos los remotos.</div>
+      </details>
+      <details>
+        <summary>¿Qué pasa con los datos de los candidatos?</summary>
+        <div class="respuesta">Los CV se usan sólo para la búsqueda en la que se presentaron, con
+          consentimiento del candidato, según la Ley 25.326 de protección de datos personales.
+          Nunca compartimos datos personales con terceros sin autorización.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     9. CIERRE — formulario corto + agenda + WhatsApp
+     ============================================================================ -->
+<section class="seccion cierre" id="contacto">
+  <div class="wrap cierre-grilla">
+    <div>
+      <span class="eyebrow">Pedir propuesta</span>
+      <h2>Contanos el puesto y te mandamos la propuesta</h2>
+      <p class="lead">Con cuatro datos alcanza para empezar. Te respondemos en menos de 24 horas
+        hábiles con el plazo, los honorarios y cómo sería el proceso para tu búsqueda.</p>
+
+      <div class="otras-vias">
+        <a class="via" data-wa href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.7-.1a11 11 0 0 1-4.5-2.9 9 9 0 0 1-1.8-3c-.2-.6 0-1.2.3-1.6l.6-.7c.2-.2.5-.2.7.1l1 1.7c.1.3.1.5 0 .7l-.4.5c-.2.2-.2.4 0 .6.4.7 1.6 2 2.7 2.4.3.1.5.1.7-.1l.5-.6c.2-.2.4-.2.7-.1l1.7.9c.3.1.4.5.2.9Z"/></svg>
+          <span><b>WhatsApp</b><small>La vía más rápida, de 8 a 19 h</small></span>
+        </a>
+        <a class="via" href="#contacto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 11h18"/></svg>
+          <span><b>Reunión de 15 minutos</b><small>Elegí el horario que te quede cómodo</small></span>
+        </a>
+        <a class="via" data-mail href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <span><b>Por correo</b><small>empresas@talentonorte.com.ar</small></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="caja-form">
+      <h3>Pedir propuesta</h3>
+      <p class="intro">Cuatro campos. Sin compromiso.</p>
+
+      <p class="aviso-demo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
+        <span>Esta es una <strong>demo de portafolio</strong>: el formulario no envía ni guarda
+          ningún dato. En la landing real se conecta a Netlify Forms, Formspree o al correo de la consultora.</span>
+      </p>
+
+      <form data-demo novalidate>
+        <div class="campos">
+          <div class="campos campos-2">
+            <label class="campo">
+              <span>Tu nombre</span>
+              <input type="text" name="nombre" autocomplete="name" required placeholder="Nombre y apellido">
+            </label>
+            <label class="campo">
+              <span>Empresa</span>
+              <input type="text" name="empresa" autocomplete="organization" required placeholder="Razón social o nombre de fantasía">
+            </label>
+          </div>
+
+          <label class="campo">
+            <span>Puesto a cubrir</span>
+            <input type="text" name="puesto" required placeholder="Ej.: Jefe de Mantenimiento, 1 vacante">
+          </label>
+
+          <div class="campos campos-2">
+            <label class="campo">
+              <span>WhatsApp o teléfono</span>
+              <input type="tel" name="telefono" autocomplete="tel" required placeholder="387 15 456 7890">
+            </label>
+            <label class="campo">
+              <span>Email <span class="opcional">(opcional)</span></span>
+              <input type="email" name="email" autocomplete="email" placeholder="vos@empresa.com.ar">
+            </label>
+          </div>
+
+          <label class="campo">
+            <span>¿Para cuándo lo necesitás? <span class="opcional">(opcional)</span></span>
+            <select name="plazo">
+              <option value="">Elegí una opción</option>
+              <option>Urgente, esta semana</option>
+              <option>Dentro del mes</option>
+              <option>Estoy tomando referencias de precio</option>
+            </select>
+          </label>
+
+          <button class="btn btn-primario btn-ancho btn-grande" type="submit">Pedir la propuesta</button>
+
+          <p style="font-size:.82rem;color:var(--ink-faint);margin:0">
+            Usamos tus datos sólo para responder esta consulta.
+            <a href="../../legal/politica-privacidad.html" style="color:var(--brand);text-decoration:underline">Cómo tratamos los datos</a>.
+          </p>
+        </div>
+
+        <p class="form-ok">
+          <b>Así se ve el mensaje de confirmación.</b><br>
+          En la landing real, acá la empresa lee «Recibimos tu pedido, te escribimos en menos de
+          24 horas» y el aviso le llega a la consultora por correo y WhatsApp.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================================
+     PIE
+     ============================================================================ -->
+<footer class="pie">
+  <div class="wrap">
+    <div class="grilla grilla-3">
+      <div>
+        <a class="marca" href="#inicio" style="color:#fff">
+          <img src="../../assets/img/logo-talento-norte.svg" alt="" aria-hidden="true">
+          <span>Talento Norte<small style="color:#9FBDC8">Consultores en RR. HH.</small></span>
+        </a>
+        <p style="margin-top:16px">Búsqueda y selección, personal eventual y búsquedas gerenciales
+          para empresas del noroeste argentino.</p>
+      </div>
+      <div>
+        <h4>Empresas</h4>
+        <ul>
+          <li><a href="#contacto">Pedir propuesta</a></li>
+          <li><a href="#proceso">Cómo trabajamos</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="../02-recurso-gratuito/">Descargar la guía de entrevistas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Candidatos</h4>
+        <ul>
+          <li><a href="../04-candidatos/">Ver búsquedas abiertas</a></li>
+          <li><a href="../04-candidatos/#cargar-cv">Cargar mi CV</a></li>
+          <li><a href="../../legal/politica-privacidad.html">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legal">
+      Talento Norte Consultores es una <strong style="color:#D3E4EA">consultora ficticia</strong>
+      creada para este portafolio de demostración. Los logos, testimonios y números son de ejemplo
+      y los formularios no envían datos.
+      <br>© <span data-anio>2026</span> · Demo de landing · <a href="../../index.html">Volver a la galería</a>
+    </p>
+  </div>
+</footer>
+
+<!-- Contacto flotante: botón en escritorio, barra fija en celular -->
+<a class="wa-flotante" data-wa href="#" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.7-.1a11 11 0 0 1-4.5-2.9 9 9 0 0 1-1.8-3c-.2-.6 0-1.2.3-1.6l.6-.7c.2-.2.5-.2.7.1l1 1.7c.1.3.1.5 0 .7l-.4.5c-.2.2-.2.4 0 .6.4.7 1.6 2 2.7 2.4.3.1.5.1.7-.1l.5-.6c.2-.2.4-.2.7-.1l1.7.9c.3.1.4.5.2.9Z"/></svg>
+</a>
+
+<div class="cta-fija">
+  <a class="btn btn-primario" href="#contacto">Pedir propuesta</a>
+  <a class="btn btn-wa" data-wa href="#">WhatsApp</a>
+</div>
+
+<script src="../../assets/js/demo.js" defer></script>
+<!-- La barra del portafolio. Para entregar esta landing sola, borrar esta línea. -->
+<script src="../../assets/js/nav.js" defer></script>
+</body>
+</html>
