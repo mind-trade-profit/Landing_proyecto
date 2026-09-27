@@ -165,7 +165,7 @@ hojas no se reenvía.
 Son los dos datos repartidos en varios archivos. Se cambian de una:
 
 ```bash
-node herramientas/configurar.mjs --whatsapp=5493875551234 --base=https://TUCUENTA.github.io/landings-rrhh
+node herramientas/configurar.mjs --whatsapp=5493875551234 --base=https://mind-trade-profit.github.io/Landing_proyecto
 ```
 
 El número va con código de país y sin `+`, espacios ni guiones. La dirección, sin barra al final.
@@ -184,34 +184,24 @@ node herramientas/og.mjs
 
 ## Publicar en GitHub Pages
 
-**1. Crear el repositorio.** Tiene que ser **público**: en el plan gratuito, Pages no funciona en
-repositorios privados.
-
-Con `gh` (la primera vez pide iniciar sesión):
-
-```bash
-gh auth login
-```
-
-```bash
-gh repo create landings-rrhh --public --source=. --remote=origin --push
-```
-
-O a mano, creando el repositorio desde la web de GitHub y después:
-
-```bash
-git remote add origin https://github.com/TUCUENTA/landings-rrhh.git
-```
+El portafolio vive en **https://github.com/mind-trade-profit/Landing_proyecto** (público, que es
+lo que Pages necesita en el plan gratuito).
 
 ```bash
 git push -u origin main
+```
+
+Si el push pide credenciales, primero:
+
+```bash
+gh auth login
 ```
 
 **2. Encender Pages.** En el repositorio, **Settings → Pages**: en *Source* elegir
 **Deploy from a branch**, rama `main`, carpeta `/ (root)`, y guardar. El archivo `.nojekyll` ya
 está, así que GitHub no va a procesar el sitio con Jekyll ni saltear carpetas.
 
-**3. Esperar** hasta diez minutos y abrir `https://TUCUENTA.github.io/landings-rrhh/`.
+**3. Esperar** hasta diez minutos y abrir `https://mind-trade-profit.github.io/Landing_proyecto/`.
 
 **4. Revisar, en el celular y en la computadora:**
 

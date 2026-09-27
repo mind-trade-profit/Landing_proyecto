@@ -15,7 +15,7 @@ import { existsSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-const RAIZ = 'C:/Users/Julmax04/Documents/landings-rrhh';
+const RAIZ = process.cwd();   /* se corre desde la raíz del proyecto */
 const PUERTO = 9335;
 const dormir = ms => new Promise(r => setTimeout(r, ms));
 

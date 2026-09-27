@@ -6,7 +6,7 @@
  *
  * Uso:
  *   node herramientas/configurar.mjs --whatsapp=5493875551234
- *   node herramientas/configurar.mjs --base=https://julianbianchi.github.io/landings-rrhh
+ *   node herramientas/configurar.mjs --base=https://mind-trade-profit.github.io/Landing_proyecto
  *   node herramientas/configurar.mjs --whatsapp=549... --base=https://...
  *
  * El WhatsApp va con código de país y SIN +, espacios ni guiones:
@@ -39,7 +39,7 @@ if (args.base && !/^https?:\/\/[^\s]+[^/]$/.test(args.base)) {
 }
 
 /* Lo que hay hoy en el repo y hay que reemplazar */
-const BASE_ACTUAL = 'https://mind-trade-profit.github.io/landings-rrhh';
+const BASE_ACTUAL = 'https://mind-trade-profit.github.io/Landing_proyecto';
 
 const CARPETAS_IGNORADAS = new Set(['.git', 'node_modules', 'capturas', 'assets']);
 
