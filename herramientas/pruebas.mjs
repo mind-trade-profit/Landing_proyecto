@@ -12,11 +12,16 @@
  */
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { join } from 'node:path';
 
 const RAIZ = process.cwd();   /* se corre desde la raíz del proyecto */
 const PUERTO = 9335;
+
+/* Se prueba sobre HTTP y no sobre file://: es como lo sirve GitHub Pages, y
+   además file:// bloquea el acceso al contenido de los iframes, que es
+   justamente lo que hay que revisar en el visor. */
+const PUERTO_WEB = 8799;
+const BASE = `http://localhost:${PUERTO_WEB}/`;
 const dormir = ms => new Promise(r => setTimeout(r, ms));
 
 const NAVEGADORES = [
@@ -54,6 +59,8 @@ async function conectar(url) {
   return new Dt(ws);
 }
 
+const servidor = spawn(process.execPath, ['herramientas/servidor.mjs', String(PUERTO_WEB)], { stdio: 'ignore' });
+
 const nav = NAVEGADORES.find(p => existsSync(p));
 const proc = spawn(nav, ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run',
   `--remote-debugging-port=${PUERTO}`, `--user-data-dir=${join(RAIZ, '.tmp-perfil')}`, 'about:blank'], { stdio: 'ignore' });
@@ -75,11 +82,19 @@ try {
   await pag.enviar('Emulation.setDeviceMetricsOverride', { width: 1280, height: 800, deviceScaleFactor: 1, mobile: false });
 
   const evaluar = async expr => {
-    const { result } = await pag.enviar('Runtime.evaluate', { expression: expr, returnByValue: true, awaitPromise: true });
-    return result.value;
+    const r = await pag.enviar('Runtime.evaluate', { expression: expr, returnByValue: true, awaitPromise: true });
+    if (r.exceptionDetails) {
+      throw new Error('la página tiró un error: ' + (r.exceptionDetails.exception || {}).description);
+    }
+    return r.result.value;
   };
+  /* Espera a que el servidor estático conteste */
+  for (let i = 0; i < 40; i++) {
+    try { const r = await fetch(BASE); if (r.ok) break; } catch { await dormir(250); }
+  }
+
   const ir = async archivo => {
-    await pag.enviar('Page.navigate', { url: pathToFileURL(resolve(RAIZ, archivo)).href });
+    await pag.enviar('Page.navigate', { url: BASE + archivo });
     await dormir(1400);
   };
 
@@ -162,7 +177,7 @@ try {
   revisar('Sin resultados muestra el cartel', filtros.vacio === 0 && filtros.cartel === true, JSON.stringify(filtros));
 
   // --- Galería: sin barra y con las 4 capturas ---
-  await ir('index.html');
+  await ir('galeria.html');
   const gal = await evaluar(`JSON.stringify({
     barra: !!document.querySelector('.barra-porta'),
     capturas: [...document.images].filter(i => i.complete && i.naturalWidth > 0).length,
@@ -172,8 +187,48 @@ try {
   revisar('Galería sin barra del portafolio', g.barra === false, gal);
   revisar('Galería: 4 capturas cargadas', g.capturas === 4, gal);
 
+  // --- Visor: las 4 pestañas y la landing adentro del marco ---
+  await ir('index.html');
+  await dormir(1600);                       // que cargue el iframe
+  const vis = await evaluar(`JSON.stringify({
+    pestanas: document.querySelectorAll('.pestana').length,
+    activa: (document.querySelector('.pestana.is-activa .pt') || {}).textContent,
+    src: (document.getElementById('marco') || {}).getAttribute ? document.getElementById('marco').getAttribute('src') : null,
+    aparte: (document.getElementById('abrirAparte') || {}).getAttribute('href'),
+    movil: document.querySelectorAll('.lista-movil a').length
+  })`);
+  const v = JSON.parse(vis);
+  revisar('Visor: 4 pestañas', v.pestanas === 4, vis);
+  revisar('Visor: arranca en la landing 1', v.activa === 'Pedido de propuesta' &&
+    v.src === 'landings/01-pedido-propuesta/', vis);
+  revisar('Visor: "Abrir aparte" apunta a la misma', v.aparte === 'landings/01-pedido-propuesta/', vis);
+  revisar('Visor: en el celular hay 4 enlaces directos', v.movil === 4, vis);
+
+  // Cambiar de pestaña cambia lo que se muestra
+  const cambio = await evaluar(`(() => {
+    document.querySelectorAll('.pestana')[2].click();
+    return JSON.stringify({
+      src: document.getElementById('marco').getAttribute('src'),
+      activa: document.querySelector('.pestana.is-activa .pt').textContent,
+      titulo: document.getElementById('vistaTitulo').childNodes[0].textContent.trim()
+    });
+  })()`);
+  const c = JSON.parse(cambio);
+  revisar('Visor: la pestaña 3 carga el taller',
+    c.src === 'landings/03-taller-webinar/' && c.activa === 'Taller en vivo' && c.titulo === 'Taller en vivo', cambio);
+
+  // Adentro del visor la landing no repite la barra
+  await dormir(1800);
+  const dentro = await evaluar(`(() => {
+    const m = document.getElementById('marco');
+    try { return String(!!m.contentDocument.querySelector('.barra-porta')); }
+    catch (e) { return 'sin-acceso'; }
+  })()`);
+  revisar('Visor: la landing de adentro no repite la barra', dentro === 'false', dentro);
+
 } finally {
   proc.kill();
+  servidor.kill();
 }
 
 let fallan = 0;

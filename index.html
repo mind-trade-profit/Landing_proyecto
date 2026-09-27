@@ -5,13 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- ============================================================================
-     GALERÍA — la portada del portafolio.
-     Es lo primero que abre una consultora cuando el referidor le pasa el link:
-     tiene que explicar el servicio en una línea y dejar entrar a las 4 landings.
+     VISOR — la portada del portafolio.
+     Las 4 landings adentro de la misma página: el cliente elige arriba y la ve
+     abajo, sin ir y volver. Cada una se puede abrir aparte, a pantalla
+     completa, que es como la vería un cliente real de la consultora.
+
+     En el celular no hay marco: un iframe en 390 px de ancho no muestra nada.
+     Ahí las cuatro se listan como tarjetas y cada una abre entera.
      ============================================================================ -->
 
 <title>Landings embudo para consultoras de RR. HH. | Portafolio</title>
-<meta name="description" content="Cuatro landings que traen empresas con vacantes y candidatos para cubrirlas. Portafolio navegable con demos reales para consultoras de RR. HH. de Argentina.">
+<meta name="description" content="Cuatro landings que traen empresas con vacantes y candidatos para cubrirlas. Elegí cuál ver y recorrelas sin salir de la página.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://mind-trade-profit.github.io/Landing_proyecto/">
 
@@ -19,12 +23,12 @@
 <meta property="og:locale" content="es_AR">
 <meta property="og:title" content="Landings embudo para consultoras de RR. HH.">
 <meta property="og:description" content="Cuatro landings que traen empresas con vacantes y candidatos para cubrirlas. Mirá las demos navegables.">
+<meta property="og:url" content="https://mind-trade-profit.github.io/Landing_proyecto/">
 <meta property="og:image" content="https://mind-trade-profit.github.io/Landing_proyecto/assets/img/og-galeria.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Landings que traen empresas con vacantes y candidatos">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:url" content="https://mind-trade-profit.github.io/Landing_proyecto/">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23114B5F'/%3E%3Cpath d='M20 7 23 16 32 19 23 22 20 31 17 22 8 19 17 16Z' fill='%23C9611F'/%3E%3C/svg%3E">
 
@@ -36,7 +40,7 @@
 
 <link rel="stylesheet" href="assets/css/base.css">
 
-<!-- ⚠️ TU CONTACTO — cambiar acá y en assets/js/nav.js -->
+<!-- ⚠️ TU CONTACTO — cambiar acá y en assets/js/nav.js (o con configurar.mjs) -->
 <script>
 const CONFIG = {
   whatsapp:        '5491100000000',
@@ -47,391 +51,234 @@ const CONFIG = {
 </script>
 
 <style>
-/* --- 1. PORTADA ---------------------------------------------------------- */
-.tope{
+/* ============================================================================
+   1. ESTRUCTURA — barra arriba, landing abajo, todo en una pantalla
+   ============================================================================ */
+body{ background:var(--surface-alt); }
+
+.tapa{
   background:var(--brand); color:#EAF2F5;
-  padding:clamp(44px,6vw,92px) 0 clamp(52px,7vw,100px);
+  padding:clamp(26px,3.6vw,44px) 0 0;
 }
-.tope h1{ color:#fff; max-width:19ch; margin-bottom:20px; }
-.tope h1 em{ font-style:normal; color:#F0A876; }
-.tope .lead{ color:#C9DCE4; max-width:58ch; margin-bottom:30px; }
+.tapa-alto{
+  display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between;
+  gap:20px; margin-bottom:clamp(20px,2.6vw,30px);
+}
+.tapa h1{
+  color:#fff; font-size:clamp(1.45rem,2.9vw,2.15rem); max-width:20ch; margin-bottom:10px;
+}
+.tapa h1 em{ font-style:normal; color:#F0A876; }
+.tapa p{ color:#B8CFD8; font-size:.96rem; max-width:52ch; margin:0; }
 .firma{
-  display:inline-flex; align-items:center; gap:10px; margin-bottom:22px;
-  font-size:.82rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
-  color:#8FC7DA;
+  display:inline-flex; align-items:center; gap:9px; margin-bottom:12px;
+  font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#8FC7DA;
 }
-.firma::before{ content:''; width:26px; height:2px; background:#8FC7DA; }
-.tope-datos{ display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:30px; font-size:.92rem; color:#A8C6D1; }
-.tope-datos span{ display:inline-flex; align-items:center; gap:8px; }
-.tope-datos svg{ width:16px; height:16px; color:#8FC7DA; }
+.firma::before{ content:''; width:22px; height:2px; background:#8FC7DA; }
+.tapa-acciones{ display:flex; flex-wrap:wrap; gap:10px; }
 
-/* --- 2. TARJETAS DE LAS LANDINGS ----------------------------------------- */
-.tarjetas{ display:grid; gap:clamp(18px,2.4vw,28px); grid-template-columns:1fr; }
-@media (min-width:700px){ .tarjetas{ grid-template-columns:1fr 1fr; } }
+/* ============================================================================
+   2. PESTAÑAS — el selector
+   ============================================================================ */
+.pestanas{
+  display:grid; gap:8px; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+}
+.pestana{
+  text-align:left; cursor:pointer;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16);
+  border-bottom:none; border-radius:12px 12px 0 0;
+  padding:13px 16px 15px; color:#C9DCE4;
+  font-family:var(--font-body); transition:background .16s ease, color .16s ease;
+}
+.pestana:hover{ background:rgba(255,255,255,.13); color:#fff; }
+.pestana .pn{
+  display:block; font-family:var(--font-title); font-size:.7rem; font-weight:700;
+  letter-spacing:.12em; color:#8FC7DA; margin-bottom:3px;
+}
+.pestana .pt{
+  display:block; font-family:var(--font-title); font-size:1rem; font-weight:700;
+  letter-spacing:-.01em; color:#fff; line-height:1.2;
+}
+.pestana .pp{ display:block; font-size:.8rem; margin-top:3px; opacity:.8; }
+.pestana.is-activa{ background:var(--surface-alt); border-color:var(--surface-alt); }
+.pestana.is-activa .pn{ color:var(--accent); }
+.pestana.is-activa .pt{ color:var(--ink); }
+.pestana.is-activa .pp{ color:var(--ink-faint); opacity:1; }
 
-.demo{
+/* ============================================================================
+   3. ESCENARIO — la landing adentro
+   ============================================================================ */
+.escenario{ padding:clamp(16px,2.2vw,26px) 0 clamp(30px,4vw,50px); }
+.regla{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+  gap:14px; margin-bottom:14px;
+}
+.regla h2{ font-size:1.08rem; margin:0; }
+.regla .publico{ font-size:.84rem; color:var(--ink-faint); display:block; font-weight:400; font-family:var(--font-body); }
+.herramientas{ display:flex; align-items:center; gap:8px; }
+.conmutador{
+  display:flex; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:3px;
+}
+.conmutador button{
+  border:0; background:transparent; cursor:pointer; border-radius:999px;
+  padding:7px 14px; font-size:.84rem; font-weight:600; color:var(--ink-faint);
+}
+.conmutador button.is-activa{ background:var(--brand); color:#fff; }
+.abrir{
+  display:inline-flex; align-items:center; gap:7px;
+  border:1px solid var(--line); background:var(--surface); border-radius:999px;
+  padding:8px 16px; font-size:.84rem; font-weight:600; color:var(--brand);
+}
+.abrir:hover{ background:var(--brand-100); }
+.abrir svg{ width:14px; height:14px; }
+
+.pantalla{
   background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg);
-  overflow:hidden; display:flex; flex-direction:column;
-  box-shadow:var(--shadow); transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  box-shadow:var(--shadow-lg); overflow:hidden; margin-inline:auto;
+  transition:max-width .3s ease;
 }
-.demo:hover{ transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:var(--brand-300); }
+#escenario[data-modo="escritorio"] .pantalla{ max-width:100%; }
+#escenario[data-modo="celular"] .pantalla{ max-width:402px; border-radius:30px; padding:8px; }
+#escenario[data-modo="celular"] .pantalla iframe{ border-radius:24px; height:74vh; min-height:560px; }
 
-/* Miniatura: la captura real de la landing, en WebP.
-   Se regenera con `node herramientas/miniaturas.mjs` cada vez que cambia un
-   diseño, así ninguna tarjeta muestra una versión vieja. */
-.mini{
-  display:block; height:190px; background:var(--surface-alt);
-  border-bottom:1px solid var(--line); overflow:hidden;
+.pantalla iframe{
+  display:block; width:100%; height:min(78vh, 900px); min-height:520px;
+  border:0; background:var(--bg);
 }
-.mini img{
-  width:100%; height:100%; object-fit:cover; object-position:top center;
-  transition:transform .4s ease;
-}
-.demo:hover .mini img{ transform:scale(1.03); }
+.pantalla iframe.cargando{ opacity:.35; }
 
-.demo .cuerpo{ padding:clamp(20px,2.4vw,26px); display:flex; flex-direction:column; flex:1; gap:10px; }
-.demo .numero{
-  font-family:var(--font-title); font-size:.78rem; font-weight:700; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--accent);
+.nota-visor{
+  margin-top:14px; font-size:.84rem; color:var(--ink-faint); text-align:center;
 }
-.demo h3{ font-size:1.16rem; }
-.demo p{ color:var(--ink-soft); font-size:.95rem; margin:0; }
-.demo .publico{
-  display:inline-flex; align-items:center; gap:7px; align-self:flex-start;
-  background:var(--brand-100); color:var(--brand); border-radius:999px;
-  padding:5px 12px; font-size:.78rem; font-weight:600;
-}
-.demo .btn{ margin-top:12px; align-self:flex-start; }
+.nota-visor a{ color:var(--brand); text-decoration:underline; }
 
-/* --- 3. CÓMO SE CONECTAN (el embudo) ------------------------------------- */
-.embudo{
-  display:flex; flex-direction:column; gap:14px; align-items:stretch;
+/* ============================================================================
+   4. EN EL CELULAR — sin marco: las cuatro como tarjetas, a pantalla completa
+   ============================================================================ */
+.lista-movil{ display:none; }
+@media (max-width:860px){
+  .pestanas, .escenario{ display:none; }
+  .tapa{ padding-bottom:clamp(26px,4vw,36px); }
+  .lista-movil{ display:grid; gap:12px; padding:clamp(22px,4vw,30px) 0 clamp(30px,5vw,44px); }
+  .lista-movil a{
+    display:flex; align-items:center; gap:14px;
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 18px; box-shadow:var(--shadow);
+  }
+  .lista-movil .num{
+    flex:none; width:40px; height:40px; border-radius:11px;
+    background:var(--brand-100); color:var(--brand);
+    display:grid; place-items:center; font-family:var(--font-title); font-weight:700; font-size:.9rem;
+  }
+  .lista-movil b{ display:block; font-family:var(--font-title); font-size:1.02rem; }
+  .lista-movil small{ color:var(--ink-faint); font-size:.86rem; }
+  .lista-movil .flecha{ margin-left:auto; color:var(--brand); font-size:1.2rem; }
 }
-@media (min-width:920px){ .embudo{ flex-direction:row; align-items:center; gap:10px; } }
-.carril{ display:flex; flex-direction:column; gap:10px; flex:1; }
-.etapa{
-  font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
-  color:var(--ink-faint); text-align:center;
-}
-.nodo{
-  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-sm);
-  padding:14px 16px; text-align:center; font-size:.92rem;
-}
-.nodo b{ display:block; font-family:var(--font-title); font-size:.98rem; margin-bottom:3px; }
-.nodo small{ color:var(--ink-faint); font-size:.82rem; }
-.nodo.principal{ border-color:var(--brand); border-width:2px; background:var(--brand-100); }
-.nodo.resultado{ background:var(--brand); border-color:var(--brand); color:#fff; }
-.nodo.resultado small{ color:#B8CFD8; }
-.nodo.talento{ border-left:4px solid var(--accent-soft); }
-.flecha{
-  align-self:center; color:var(--brand-300); font-size:1.5rem; line-height:1;
-  transform:rotate(90deg);
-}
-@media (min-width:920px){ .flecha{ transform:none; } }
-.flecha.sube{ transform:none; }
-
-/* --- 4. QUÉ INCLUYE ------------------------------------------------------ */
-.incluye-grilla li{
-  display:flex; gap:12px; align-items:flex-start; font-size:.96rem; color:var(--ink-soft);
-  margin-bottom:14px;
-}
-.incluye-grilla svg{ width:19px; height:19px; flex:none; margin-top:3px; color:var(--brand); }
-.incluye-grilla b{ color:var(--ink); }
-
-/* --- 5. CIERRE ----------------------------------------------------------- */
-.cierre-porta{ background:var(--brand-700); }
 </style>
 </head>
 
-<body data-barra="no">
-<a class="salto-contenido" href="#demos">Saltar a las demos</a>
+<body>
+<a class="salto-contenido" href="#escenario">Saltar a las demos</a>
 
 <!-- ============================================================================
-     1. PORTADA
+     TAPA + SELECTOR
      ============================================================================ -->
-<header class="tope">
+<header class="tapa">
   <div class="wrap">
-    <span class="firma">Portafolio · Landings a medida</span>
-    <h1>Landings que traen <em>empresas con vacantes</em> y candidatos para cubrirlas</h1>
-    <p class="lead">Cuatro páginas pensadas para consultoras de RR. HH. de Argentina. Cada una
-      resuelve un paso distinto del embudo, y las cuatro se pueden ver acá adentro, funcionando.</p>
-
-    <div class="acciones">
-      <a class="btn btn-primario btn-grande" href="#demos">Ver las 4 demos</a>
-      <a class="btn btn-claro" data-wa href="#">Quiero una para mi consultora</a>
+    <div class="tapa-alto">
+      <div>
+        <span class="firma">Portafolio · Landings a medida</span>
+        <h1>Landings que traen <em>empresas con vacantes</em> y candidatos</h1>
+        <p>Cuatro páginas para una consultora de RR. HH., cada una resolviendo un paso distinto
+          del embudo. Elegí cuál ver: se abre acá abajo.</p>
+      </div>
+      <div class="tapa-acciones">
+        <a class="btn btn-primario" data-wa href="#">Quiero la mía</a>
+        <a class="btn btn-claro" href="galeria.html">Ver como galería</a>
+      </div>
     </div>
 
-    <div class="tope-datos">
-      <span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-        Formulario, WhatsApp y medición en todas
-      </span>
-      <span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-        Se ven bien en el celular, que es por donde entra casi todo el tráfico
-      </span>
-      <span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-        Consentimiento y política de privacidad según la Ley 25.326
-      </span>
-    </div>
+    <!-- Las pestañas las arma visor.js desde su lista de landings -->
+    <div class="pestanas" id="pestanas" role="tablist" aria-label="Elegí qué landing ver"></div>
   </div>
 </header>
 
-<main>
-
 <!-- ============================================================================
-     2. LAS 4 DEMOS
+     LA LANDING ELEGIDA
      ============================================================================ -->
-<section class="seccion" id="demos">
+<main class="escenario" id="escenario" data-modo="escritorio">
   <div class="wrap">
-    <div class="encabezado-seccion">
-      <span class="eyebrow">Las demos</span>
-      <h2>Entrá a cualquiera y navegá entre las cuatro</h2>
-      <p class="lead">Están armadas para una consultora inventada, <strong>Talento Norte
-        Consultores</strong>, para no usar la marca de nadie. Dentro de cada una hay una barra
-        arriba para pasar a la siguiente, volver acá o escribirme.</p>
-    </div>
+    <div class="regla">
+      <h2 id="vistaTitulo">Pedido de propuesta
+        <span class="publico" id="vistaPublico">Empresas · decisión</span>
+      </h2>
 
-    <div class="tarjetas">
-
-      <!-- LANDING 1 -->
-      <article class="demo">
-        <a class="mini" href="landings/01-pedido-propuesta/" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/captura-01.webp" alt="" aria-hidden="true" width="1280" height="760" loading="lazy" decoding="async">
-        </a>
-        <div class="cuerpo">
-          <span class="numero">Landing 01</span>
-          <h3>Pedido de propuesta</h3>
-          <span class="publico">Empresas · etapa de decisión</span>
-          <p>Para la empresa que ya tiene la vacante abierta. Promete tres finalistas evaluados,
-            muestra el proceso y cierra con un formulario de cuatro campos.</p>
-          <a class="btn btn-marca" href="landings/01-pedido-propuesta/">Ver landing →</a>
+      <div class="herramientas">
+        <div class="conmutador" role="group" aria-label="Ancho de pantalla">
+          <button type="button" data-ancho="escritorio" class="is-activa" aria-pressed="true">Escritorio</button>
+          <button type="button" data-ancho="celular" aria-pressed="false">Celular</button>
         </div>
-      </article>
-
-      <!-- LANDING 2 -->
-      <article class="demo">
-        <a class="mini" href="landings/02-recurso-gratuito/" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/captura-02.webp" alt="" aria-hidden="true" width="1280" height="760" loading="lazy" decoding="async">
-        </a>
-        <div class="cuerpo">
-          <span class="numero">Landing 02</span>
-          <h3>Recurso gratuito</h3>
-          <span class="publico">Empresas · etapa de atracción</span>
-          <p>Para la empresa que todavía no está buscando. Entrega un material útil a cambio del
-            correo y la mete en una secuencia que termina en el pedido de propuesta.</p>
-          <a class="btn btn-marca" href="landings/02-recurso-gratuito/">Ver landing →</a>
-        </div>
-      </article>
-
-      <!-- LANDING 3 -->
-      <article class="demo">
-        <a class="mini" href="landings/03-taller-webinar/" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/captura-03.webp" alt="" aria-hidden="true" width="1280" height="760" loading="lazy" decoding="async">
-        </a>
-        <div class="cuerpo">
-          <span class="numero">Landing 03</span>
-          <h3>Taller o webinar en vivo</h3>
-          <span class="publico">Empresas · etapa de consideración</span>
-          <p>Para quien duda. Un taller gratuito con cuenta regresiva y recordatorios, que termina
-            ofreciendo un diagnóstico sin costo.</p>
-          <a class="btn btn-marca" href="landings/03-taller-webinar/">Ver landing →</a>
-        </div>
-      </article>
-
-      <!-- LANDING 4 -->
-      <article class="demo">
-        <a class="mini" href="landings/04-candidatos/" tabindex="-1" aria-hidden="true">
-          <img src="assets/img/captura-04.webp" alt="" aria-hidden="true" width="1280" height="760" loading="lazy" decoding="async">
-        </a>
-        <div class="cuerpo">
-          <span class="numero">Landing 04</span>
-          <h3>Captación de candidatos</h3>
-          <span class="publico">Candidatos · oferta de talento</span>
-          <p>El otro lado del negocio: búsquedas filtrables por rubro y zona, carga de CV con
-            consentimiento y avisos de nuevas búsquedas.</p>
-          <a class="btn btn-marca" href="landings/04-candidatos/">Ver landing →</a>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================================
-     3. CÓMO SE CONECTAN LAS 4
-     ============================================================================ -->
-<section class="seccion seccion-clara">
-  <div class="wrap">
-    <div class="encabezado-seccion">
-      <span class="eyebrow">Cómo se conectan</span>
-      <h2>Tres traen la empresa; la cuarta, la gente para cubrir el puesto</h2>
-      <p class="lead">La empresa puede entrar por cualquiera de las tres primeras. Los correos de
-        seguimiento la empujan siempre hacia el mismo lugar: pedir una propuesta.</p>
-    </div>
-
-    <div class="embudo">
-      <div class="carril">
-        <span class="etapa">Entran las empresas</span>
-        <a class="nodo" href="landings/02-recurso-gratuito/">
-          <b>02 · Recurso gratuito</b>
-          <small>Todavía no está buscando</small>
-        </a>
-        <a class="nodo" href="landings/03-taller-webinar/">
-          <b>03 · Taller en vivo</b>
-          <small>Está evaluando</small>
-        </a>
-      </div>
-
-      <span class="flecha" aria-hidden="true">→</span>
-
-      <div class="carril">
-        <span class="etapa">Deciden</span>
-        <a class="nodo principal" href="landings/01-pedido-propuesta/">
-          <b>01 · Pedido de propuesta</b>
-          <small>Tiene la vacante abierta</small>
-        </a>
-      </div>
-
-      <span class="flecha" aria-hidden="true">→</span>
-
-      <div class="carril">
-        <span class="etapa">El negocio</span>
-        <div class="nodo resultado">
-          <b>Búsqueda cubierta</b>
-          <small>Honorarios para la consultora</small>
-        </div>
-        <span class="flecha sube" aria-hidden="true">↑</span>
-        <a class="nodo talento" href="landings/04-candidatos/">
-          <b>04 · Captación de candidatos</b>
-          <small>La gente que cubre el puesto</small>
+        <a class="abrir" id="abrirAparte" href="landings/01-pedido-propuesta/" target="_blank" rel="noopener">
+          Abrir aparte
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
         </a>
       </div>
     </div>
 
-    <p class="lead" style="margin-top:32px">Sin la cuarta, las otras tres venden búsquedas que
-      después cuesta cubrir. Por eso el pack tiene sentido como conjunto y no como cuatro páginas
-      sueltas.</p>
-  </div>
-</section>
-
-<!-- ============================================================================
-     4. QUÉ INCLUYE CADA LANDING
-     ============================================================================ -->
-<section class="seccion">
-  <div class="wrap">
-    <div class="encabezado-seccion">
-      <span class="eyebrow">Qué incluye</span>
-      <h2>Los mismos cimientos en las cuatro</h2>
+    <div class="pantalla">
+      <iframe id="marco" title="Vista de la landing elegida" loading="lazy"></iframe>
     </div>
 
-    <div class="grilla grilla-2">
-      <ul class="incluye-grilla">
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Formulario corto</b> conectado a Netlify Forms, Formspree o al correo de la
-            consultora. Tres a cinco campos: cada campo de más baja la conversión.</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>WhatsApp con mensaje precargado</b>, que en Argentina es el canal por el que
-            entra la mayoría de las consultas.</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Página de gracias con URL propia</b>, para medir la conversión de verdad en
-            Analytics y en el píxel de Meta.</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Agenda de reuniones</b> con Calendly o Google Calendar, para cortar las idas y
-            vueltas por horario.</span>
-        </li>
-      </ul>
-      <ul class="incluye-grilla">
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Medición completa:</b> Google Analytics 4, píxel de Meta, LinkedIn Insight Tag
-            y Microsoft Clarity para ver dónde abandona la gente.</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Consentimiento y política de privacidad</b> según la Ley 25.326, que en la
-            landing de candidatos no es opcional: sin eso no se puede pedir un CV.</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Carga rápida en el celular:</b> HTML estático, sin plantillas pesadas ni
-            plugins que se rompan con la próxima actualización.</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Identidad de la consultora:</b> sus colores, su logo y su forma de hablar.
-            Las demos usan una marca inventada, pero se adapta a la de cada cliente.</span>
-        </li>
-      </ul>
-    </div>
+    <p class="nota-visor">
+      Se recorre y se usa como cualquier página: los formularios validan, pero no envían nada.
+      Con <strong>←</strong> y <strong>→</strong> pasás de una a otra.
+      <a href="galeria.html">Verlas como galería</a>.
+    </p>
   </div>
-</section>
-
-<!-- ============================================================================
-     5. CIERRE
-     ============================================================================ -->
-<section class="seccion seccion-oscura cierre-porta centrado">
-  <div class="wrap wrap-angosto">
-    <span class="eyebrow">El paso siguiente</span>
-    <h2>¿Querés ver cómo quedaría con la marca de tu consultora?</h2>
-    <p class="lead" style="margin-inline:auto;margin-top:14px">Te muestro la landing que resuelva
-      tu problema más urgente adaptada a tus colores y tu nombre, en una llamada de 15 minutos.
-      Si no te sirve, no perdimos nada.</p>
-    <div class="acciones acciones-centro" style="margin-top:28px">
-      <a class="btn btn-primario btn-grande" data-wa href="#">Escribime por WhatsApp</a>
-      <a class="btn btn-claro" data-mail href="#">Mandarme un correo</a>
-    </div>
-  </div>
-</section>
-
 </main>
+
+<!-- ============================================================================
+     EN EL CELULAR — cada una a pantalla completa
+     ============================================================================ -->
+<div class="wrap">
+  <nav class="lista-movil" aria-label="Las 4 landings">
+    <a href="landings/01-pedido-propuesta/">
+      <span class="num">01</span>
+      <span><b>Pedido de propuesta</b><small>Empresas · decisión</small></span>
+      <span class="flecha" aria-hidden="true">→</span>
+    </a>
+    <a href="landings/02-recurso-gratuito/">
+      <span class="num">02</span>
+      <span><b>Recurso gratuito</b><small>Empresas · atracción</small></span>
+      <span class="flecha" aria-hidden="true">→</span>
+    </a>
+    <a href="landings/03-taller-webinar/">
+      <span class="num">03</span>
+      <span><b>Taller en vivo</b><small>Empresas · consideración</small></span>
+      <span class="flecha" aria-hidden="true">→</span>
+    </a>
+    <a href="landings/04-candidatos/">
+      <span class="num">04</span>
+      <span><b>Captación de candidatos</b><small>Candidatos · oferta</small></span>
+      <span class="flecha" aria-hidden="true">→</span>
+    </a>
+  </nav>
+</div>
 
 <footer class="pie">
   <div class="wrap">
-    <div class="grilla grilla-3">
-      <div>
-        <h4>Las 4 landings</h4>
-        <ul>
-          <li><a href="landings/01-pedido-propuesta/">01 · Pedido de propuesta</a></li>
-          <li><a href="landings/02-recurso-gratuito/">02 · Recurso gratuito</a></li>
-          <li><a href="landings/03-taller-webinar/">03 · Taller en vivo</a></li>
-          <li><a href="landings/04-candidatos/">04 · Captación de candidatos</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Extras</h4>
-        <ul>
-          <li><a href="landings/02-recurso-gratuito/gracias.html">Página de gracias</a></li>
-          <li><a href="legal/politica-privacidad.html">Política de privacidad modelo</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contacto</h4>
-        <ul>
-          <li><a data-wa href="#">WhatsApp</a></li>
-          <li><a data-mail href="#">Correo</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="legal">
+    <p class="legal" style="margin-top:0;border-top:0;padding-top:0">
       <strong style="color:#D3E4EA">Talento Norte Consultores no existe:</strong> es una consultora
       inventada para estas demos, para no usar la marca, el logo ni los datos de ninguna consultora
       real. Logos, testimonios, números y búsquedas están rotulados como ejemplo, y ningún
       formulario envía ni guarda datos.
-      <br>© <span data-anio>2026</span> · Portafolio de landings embudo para consultoras de RR. HH.
+      <br>© <span data-anio>2026</span> · Portafolio de landings embudo para consultoras de RR. HH. ·
+      <a href="galeria.html">Galería</a> ·
+      <a href="legal/politica-privacidad.html">Política de privacidad</a>
     </p>
   </div>
 </footer>
 
 <script src="assets/js/demo.js" defer></script>
+<script src="assets/js/visor.js" defer></script>
 </body>
 </html>

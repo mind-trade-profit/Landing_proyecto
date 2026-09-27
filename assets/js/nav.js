@@ -34,6 +34,10 @@
   /* --- 3. ¿Corresponde mostrar la barra? ---------------------------------- */
   if (document.body.getAttribute('data-barra') === 'no') return;
 
+  /* Adentro del visor (index.html) la navegación la ponen las pestañas de
+     arriba: dos barras para lo mismo sobran y confunden. */
+  if (window.self !== window.top) return;
+
   var ruta = decodeURIComponent(location.pathname);
   var actual = -1;
   LANDINGS.forEach(function (l, i) {
@@ -65,7 +69,7 @@
     '← <span class="bp-texto">Anterior</span>'
   ));
 
-  barra.appendChild(enlace('bp-galeria', '../../index.html', 'Volver a la galería', '<span class="bp-texto">Galería</span>'));
+  barra.appendChild(enlace('bp-galeria', '../../index.html', 'Volver al portafolio', '<span class="bp-texto">Portafolio</span>'));
 
   barra.appendChild(enlace(
     'bp-siguiente',

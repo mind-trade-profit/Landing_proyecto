@@ -4,7 +4,12 @@ Portafolio navegable con cuatro landings de demostración para consultoras de re
 Argentina. Cada una resuelve un paso distinto del embudo: tres traen empresas con vacantes y la
 cuarta trae los candidatos para cubrirlas.
 
-**Ver el portafolio:** abrí `index.html`, o publicalo en GitHub Pages (instrucciones abajo).
+**Ver el portafolio:** abrí `index.html` (el visor: elegís cuál ver arriba y se abre en la misma
+página), o publicalo en GitHub Pages (instrucciones abajo). `galeria.html` muestra las mismas
+cuatro como tarjetas, con una captura de cada una.
+
+En el celular el visor no usa marco —un iframe de 390 px no muestra nada— y lista las cuatro para
+abrirlas enteras.
 
 | # | Landing | Para quién | Acción principal |
 | --- | --- | --- | --- |
@@ -35,10 +40,12 @@ no usar el nombre, el logo ni los datos de ninguna consultora real.
 
 ```
 landings-rrhh/
-  index.html                      galería: las 4 tarjetas con captura y el embudo
+  index.html                      el visor: elegís arriba y la landing se abre adentro
+  galeria.html                    la vista de tarjetas, con la captura de cada una
   assets/
     css/base.css                  variables de marca, botones, tarjetas, formularios y la barra
     js/nav.js                     la barra Anterior · Galería · Siguiente + "2 de 4"
+    js/visor.js                   las pestañas del visor y el marco que las muestra
     js/demo.js                    formularios de demo, cuenta regresiva, filtros, animaciones
     img/                          logo y capturas WebP de la galería
   landings/
@@ -115,10 +122,11 @@ node herramientas/miniaturas.mjs
 ## Agregar una quinta landing
 
 1. Crear `landings/05-lo-que-sea/index.html` (copiar la que más se parezca).
-2. Sumar **una línea** a la lista `LANDINGS` en `assets/js/nav.js`.
-3. Agregar la tarjeta en `index.html` y correr `node herramientas/miniaturas.mjs`.
+2. Sumar **una línea** a la lista `LANDINGS` en `assets/js/nav.js` y otra en `assets/js/visor.js`.
+3. Agregar la tarjeta en `galeria.html`, el enlace en la lista de celular de `index.html`, y correr
+   `node herramientas/miniaturas.mjs`.
 
-La barra recalcula sola el "5 de 5", las flechas y el orden.
+La barra y las pestañas recalculan solas el "5 de 5", las flechas y el orden.
 
 ---
 
