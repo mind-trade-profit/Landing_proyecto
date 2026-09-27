@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================================
+     PÁGINA DE GRACIAS — el paso más desperdiciado del embudo.
+     Acá la persona ya dijo que sí una vez: es el mejor momento para pedirle el
+     paso siguiente (el taller o una reunión), no para dejarla sola con un
+     "gracias por suscribirte".
+
+     También es la página donde se dispara la conversión en Google Analytics y
+     en el píxel de Meta: por eso vive en una URL propia y no en un cartelito.
+     ============================================================================ -->
+
+<title>Listo, ahí va tu plantilla | Talento Norte Consultores</title>
+<meta name="description" content="Tu descarga está lista. Mirá el próximo taller gratuito o pedí una reunión de 15 minutos.">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23114B5F'/%3E%3Cpath d='M20 7 23 16 32 19 23 22 20 31 17 22 8 19 17 16Z' fill='%23C9611F'/%3E%3C/svg%3E">
+
+<script>document.documentElement.className += ' js';</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css">
+
+<script>
+const CONFIG = {
+  whatsapp:        '5493870000000',
+  mensajeWhatsApp: 'Hola! Descargué la plantilla y quiero coordinar una reunión.',
+  telefono:        '+543870000000',
+  email:           'empresas@talentonorte.com.ar'
+};
+</script>
+
+<style>
+.gracias{ padding:clamp(44px,6vw,90px) 0; text-align:center; }
+.tilde{
+  width:78px; height:78px; border-radius:50%; background:#E8F5EE; color:var(--ok);
+  display:grid; place-items:center; margin:0 auto 24px;
+}
+.tilde svg{ width:40px; height:40px; }
+.gracias h1{ font-size:clamp(1.8rem,4vw,2.7rem); margin-bottom:14px; }
+.descarga{
+  margin:clamp(30px,4vw,44px) auto 0; max-width:520px;
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg);
+  box-shadow:var(--shadow); padding:clamp(24px,3vw,32px);
+}
+.descarga .archivo{
+  display:flex; align-items:center; gap:14px; text-align:left;
+  padding-bottom:18px; margin-bottom:20px; border-bottom:1px solid var(--line);
+}
+.descarga .archivo .icono{ margin:0; }
+.descarga .archivo b{ display:block; font-size:.98rem; }
+.descarga .archivo small{ color:var(--ink-faint); font-size:.84rem; }
+.siguiente{ display:grid; gap:clamp(16px,2.4vw,26px); grid-template-columns:1fr; text-align:left; }
+@media (min-width:820px){ .siguiente{ grid-template-columns:1fr 1fr; } }
+.siguiente .tarjeta{ display:flex; flex-direction:column; }
+.siguiente .tarjeta .btn{ margin-top:auto; }
+.siguiente .tarjeta p{ margin-bottom:20px; }
+</style>
+</head>
+
+<body>
+
+<header class="cabecera">
+  <div class="wrap">
+    <span class="marca">
+      <img src="../../assets/img/logo-talento-norte.svg" alt="" aria-hidden="true">
+      <span>Talento Norte<small>Consultores en RR. HH. · NOA</small></span>
+    </span>
+    <a class="btn btn-secundario" href="../01-pedido-propuesta/">Pedir propuesta</a>
+  </div>
+</header>
+
+<main>
+
+<section class="gracias">
+  <div class="wrap wrap-angosto">
+    <div class="tilde" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <h1>Listo, la plantilla ya es tuya</h1>
+    <p class="lead" style="margin-inline:auto">También te la mandamos por correo, por si querés
+      tenerla a mano más adelante. Revisá la casilla de promociones si no la ves.</p>
+
+    <div class="descarga">
+      <div class="archivo">
+        <span class="icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/></svg>
+        </span>
+        <span>
+          <b>Descripción de puesto y guía de entrevista</b>
+          <small>PDF · 12 páginas · 1,4 MB</small>
+        </span>
+      </div>
+
+      <p class="aviso-demo" style="text-align:left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
+        <span>En la <strong>demo</strong> el archivo no existe todavía. En la landing real este
+          botón descarga el PDF del cliente y dispara la conversión en Analytics.</span>
+      </p>
+
+      <button class="btn btn-primario btn-ancho btn-grande" type="button" data-demo-descarga>
+        Descargar el PDF
+      </button>
+      <p class="form-ok" id="avisoDescarga" style="text-align:left">
+        <b>Acá arrancaría la descarga.</b> En la landing del cliente el archivo se sirve desde su
+        propio alojamiento, nunca desde GitHub Pages.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     EL PASO SIGUIENTE — lo que justifica que esta página exista
+     ============================================================================ -->
+<section class="seccion seccion-clara">
+  <div class="wrap">
+    <div class="encabezado-seccion centrado">
+      <span class="eyebrow">Mientras tanto</span>
+      <h2>Dos formas de seguir</h2>
+      <p class="lead">La plantilla resuelve el perfil. Estas dos resuelven la búsqueda.</p>
+    </div>
+
+    <div class="siguiente">
+      <article class="tarjeta">
+        <div class="icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 11h18"/></svg>
+        </div>
+        <h3>Taller gratuito: entrevistar en 45 minutos</h3>
+        <p>Cómo usar la guía que acabás de bajar en una entrevista real, con los errores típicos que
+          hacen que un buen candidato quede afuera. En vivo, una vez por mes.</p>
+        <a class="btn btn-marca" href="../03-taller-webinar/">Ver el próximo taller</a>
+      </article>
+
+      <article class="tarjeta tarjeta-destacada">
+        <div class="icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M19 8v6m3-3h-6"/></svg>
+        </div>
+        <h3>¿Tenés una vacante abierta ahora?</h3>
+        <p>Si el puesto no puede esperar, contanos cuál es y te mandamos una propuesta con plazo y
+          honorarios. Sin costo y sin compromiso.</p>
+        <a class="btn btn-primario" href="../01-pedido-propuesta/#contacto">Pedir una propuesta</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <p class="legal" style="margin-top:0;border-top:0;padding-top:0">
+      Talento Norte Consultores es una <strong style="color:#D3E4EA">consultora ficticia</strong>
+      de este portafolio de demostración.
+      <br>© <span data-anio>2026</span> ·
+      <a href="../../legal/politica-privacidad.html">Política de privacidad</a> ·
+      <a href="../../index.html">Volver a la galería</a>
+    </p>
+  </div>
+</footer>
+
+<script src="../../assets/js/demo.js" defer></script>
+<script src="../../assets/js/nav.js" defer></script>
+<script>
+/* El botón de descarga de la demo no baja nada: avisa que es una demo. */
+document.addEventListener('DOMContentLoaded', function () {
+  var boton = document.querySelector('[data-demo-descarga]');
+  var aviso = document.getElementById('avisoDescarga');
+  if (boton && aviso) {
+    boton.addEventListener('click', function () { aviso.classList.add('is-visible'); });
+  }
+});
+</script>
+</body>
+</html>

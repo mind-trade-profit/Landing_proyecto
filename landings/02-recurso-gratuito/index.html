@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================================
+     LANDING 2 de 4 — RECURSO GRATUITO (empresas · etapa de atracción)
+     Objetivo: que una empresa que todavía NO está buscando deje su correo a
+     cambio de un material útil, y entre así al embudo.
+     Métrica: descargas y % de esas descargas que llega a una reunión.
+     ---------------------------------------------------------------------------
+     La regla de esta landing: una sola acción. No hay menú de navegación ni
+     links que se lleven a la persona: o descarga, o no descarga.
+     ============================================================================ -->
+
+<title>Plantilla de descripción de puesto + guía de entrevista | Gratis</title>
+<meta name="description" content="Descargá gratis la plantilla para definir un puesto y la guía de entrevista por competencias que usa Talento Norte en sus búsquedas. Para pymes del NOA.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://mind-trade-profit.github.io/landings-rrhh/landings/02-recurso-gratuito/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Talento Norte Consultores">
+<meta property="og:title" content="Plantilla de descripción de puesto + guía de entrevista">
+<meta property="og:description" content="El material que usamos en nuestras búsquedas, listo para que lo uses en la tuya. Descarga gratuita.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23114B5F'/%3E%3Cpath d='M20 7 23 16 32 19 23 22 20 31 17 22 8 19 17 16Z' fill='%23C9611F'/%3E%3C/svg%3E">
+
+<script>document.documentElement.className += ' js';</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../assets/css/base.css">
+
+<!-- DATOS DE CONTACTO — lo único que se cambia para otro cliente -->
+<script>
+const CONFIG = {
+  whatsapp:        '5493870000000',
+  mensajeWhatsApp: 'Hola! Descargué la plantilla de descripción de puesto y quiero hacerles una consulta.',
+  telefono:        '+543870000000',
+  email:           'empresas@talentonorte.com.ar'
+};
+</script>
+
+<style>
+/* --- 1. PORTADA CON FORMULARIO A LA VISTA -------------------------------- */
+.hero{ padding:clamp(36px,5vw,72px) 0 clamp(48px,6vw,84px); }
+.hero-grilla{ display:grid; gap:clamp(32px,4vw,58px); align-items:start; grid-template-columns:1fr; }
+@media (min-width:980px){ .hero-grilla{ grid-template-columns:1.1fr .9fr; } }
+.hero h1{ margin-bottom:18px; }
+.hero h1 em{ font-style:normal; color:var(--accent); }
+.hero .lead{ margin-bottom:26px; }
+.gratis{
+  display:inline-flex; align-items:center; gap:8px; margin-bottom:18px;
+  background:var(--accent-100); color:var(--accent); border:1px solid #F0D3C2;
+  border-radius:999px; padding:7px 15px; font-size:.84rem; font-weight:700;
+  letter-spacing:.04em; text-transform:uppercase;
+}
+
+/* --- 2. MAQUETA DEL RECURSO (en vez de una foto de stock) ---------------- */
+.recurso{ display:flex; gap:18px; align-items:flex-end; margin-top:36px; }
+.hoja{
+  width:190px; flex:none; background:var(--surface); border:1px solid var(--line);
+  border-radius:12px; box-shadow:var(--shadow-lg); padding:18px 16px;
+  transform:rotate(-3deg); transition:transform .3s ease;
+}
+.hoja:hover{ transform:rotate(-1deg) translateY(-4px); }
+.hoja .sello{
+  width:26px; height:26px; border-radius:7px; background:var(--brand); margin-bottom:12px;
+}
+.hoja h4{ font-size:.82rem; line-height:1.3; margin-bottom:10px; }
+.hoja .linea{ height:5px; border-radius:3px; background:var(--surface-alt); margin-bottom:6px; }
+.hoja .linea.corta{ width:62%; }
+.hoja .linea.marcada{ background:var(--brand-100); }
+.hoja .pie-hoja{ margin-top:12px; font-size:.6rem; color:var(--ink-faint); letter-spacing:.06em; text-transform:uppercase; }
+.recurso-datos li{
+  font-size:.92rem; color:var(--ink-soft); margin-bottom:9px;
+  padding-left:26px; position:relative;
+}
+.recurso-datos li::before{
+  content:''; position:absolute; left:0; top:.35em; width:16px; height:16px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A64A17' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* --- 3. QUÉ INCLUYE ------------------------------------------------------ */
+.incluye{ counter-reset:item; }
+.incluye li{
+  display:flex; gap:16px; align-items:flex-start; padding:20px 0;
+  border-bottom:1px solid var(--line);
+}
+.incluye li:last-child{ border-bottom:0; }
+.incluye .num{
+  counter-increment:item; flex:none;
+  width:34px; height:34px; border-radius:10px; background:var(--accent-100); color:var(--accent);
+  display:grid; place-items:center; font-family:var(--font-title); font-weight:700; font-size:.92rem;
+}
+.incluye .num::before{ content:counter(item); }
+.incluye h3{ font-size:1.02rem; margin-bottom:5px; }
+.incluye p{ color:var(--ink-soft); font-size:.95rem; margin:0; }
+
+/* --- 4. QUIÉN LO HIZO ---------------------------------------------------- */
+.autor{ display:grid; gap:clamp(24px,3.4vw,44px); grid-template-columns:1fr; align-items:center; }
+@media (min-width:880px){ .autor{ grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+
+<body>
+<a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+<!-- En una landing de descarga el encabezado no lleva menú: cualquier link es
+     una puerta de salida antes de que la persona deje su correo. -->
+<header class="cabecera">
+  <div class="wrap">
+    <span class="marca">
+      <img src="../../assets/img/logo-talento-norte.svg" alt="" aria-hidden="true">
+      <span>Talento Norte<small>Consultores en RR. HH. · NOA</small></span>
+    </span>
+    <a class="btn btn-primario" href="#descargar">Descargar gratis</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- ============================================================================
+     1. PORTADA — beneficio + formulario a la vista, sin scroll
+     ============================================================================ -->
+<section class="hero">
+  <div class="wrap hero-grilla">
+    <div>
+      <span class="gratis">Descarga gratuita · PDF</span>
+      <h1>La plantilla con la que definís un puesto <em>antes</em> de publicar el aviso</h1>
+      <p class="lead">Casi todas las búsquedas que salen mal empiezan mal: nadie escribió qué tiene
+        que hacer la persona ni cómo se va a evaluar. Esta es la plantilla que usamos nosotros en
+        cada búsqueda, con la guía de entrevista por competencias que sale de ella.</p>
+
+      <ul class="recurso-datos">
+        <li>12 páginas, listas para completar e imprimir</li>
+        <li>Incluye las preguntas de entrevista ya redactadas</li>
+        <li>Pensada para pymes que no tienen área de RR. HH.</li>
+      </ul>
+
+      <!-- Maqueta del material: se ve qué se está por descargar -->
+      <div class="recurso" aria-hidden="true">
+        <div class="hoja">
+          <div class="sello"></div>
+          <h4>Descripción de puesto y guía de entrevista</h4>
+          <div class="linea marcada"></div>
+          <div class="linea"></div>
+          <div class="linea corta"></div>
+          <div class="linea" style="margin-top:12px"></div>
+          <div class="linea marcada"></div>
+          <div class="linea corta"></div>
+          <p class="pie-hoja">Talento Norte · 12 páginas</p>
+        </div>
+        <div class="hoja" style="transform:rotate(4deg);width:160px">
+          <h4 style="margin-top:4px">Preguntas por competencia</h4>
+          <div class="linea"></div>
+          <div class="linea marcada"></div>
+          <div class="linea corta"></div>
+          <div class="linea" style="margin-top:12px"></div>
+          <div class="linea corta"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         FORMULARIO — tres campos. Cada campo de más baja la conversión.
+         ======================================================================== -->
+    <div class="caja-form" id="descargar">
+      <h3>Te la mandamos ahora mismo</h3>
+      <p class="intro">Dejanos tres datos y la descarga arranca en la próxima pantalla.</p>
+
+      <p class="aviso-demo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
+        <span>Esta es una <strong>demo de portafolio</strong>: el formulario no envía ni guarda
+          ningún dato. En la landing real conecta con Brevo o MailerLite y dispara la secuencia de correos.</span>
+      </p>
+
+      <form data-demo novalidate>
+        <div class="campos">
+          <label class="campo">
+            <span>Tu nombre</span>
+            <input type="text" name="nombre" autocomplete="name" required placeholder="Nombre y apellido">
+          </label>
+          <label class="campo">
+            <span>Email de trabajo</span>
+            <input type="email" name="email" autocomplete="email" required placeholder="vos@empresa.com.ar">
+          </label>
+          <label class="campo">
+            <span>Empresa</span>
+            <input type="text" name="empresa" autocomplete="organization" required placeholder="Dónde trabajás">
+          </label>
+
+          <label class="consentimiento">
+            <input type="checkbox" name="acepto" required>
+            <span>Acepto recibir la plantilla y hasta cinco correos con material sobre selección
+              de personal. Puedo darme de baja cuando quiera.
+              <a href="../../legal/politica-privacidad.html">Cómo tratamos los datos</a>.</span>
+          </label>
+
+          <button class="btn btn-primario btn-ancho btn-grande" type="submit">Descargar la plantilla</button>
+          <p style="font-size:.82rem;color:var(--ink-faint);margin:0;text-align:center">
+            Gratis, sin costo ni letra chica. No compartimos tu correo con nadie.</p>
+        </div>
+
+        <p class="form-ok">
+          <b>Listo: así se ve la confirmación.</b><br>
+          En la landing real, acá la persona pasa a la
+          <a href="gracias.html" style="color:#0F5132;text-decoration:underline">página de gracias</a>,
+          se descarga el PDF y arranca la secuencia de correos.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     2. QUÉ INCLUYE
+     ============================================================================ -->
+<section class="seccion seccion-clara" id="contenido-recurso">
+  <div class="wrap wrap-angosto">
+    <div class="encabezado-seccion">
+      <span class="eyebrow">Qué vas a descargar</span>
+      <h2>Cuatro herramientas, una atrás de la otra</h2>
+      <p class="lead">No es un PDF de consejos generales: es el material de trabajo que completás
+        y usás en tu próxima búsqueda.</p>
+    </div>
+
+    <ul class="incluye">
+      <li class="reveal">
+        <span class="num" aria-hidden="true"></span>
+        <div>
+          <h3>Plantilla de descripción de puesto</h3>
+          <p>Tarea real, a quién le reporta, qué resultados se esperan a los 90 días y qué es
+            excluyente y qué es deseable. Es la diferencia entre «busco un administrativo» y un perfil.</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="num" aria-hidden="true"></span>
+        <div>
+          <h3>Guía de entrevista por competencias</h3>
+          <p>Las preguntas ya redactadas para cada competencia y qué escuchar en la respuesta.
+            Sirve para que entrevisten dos personas distintas y comparen lo mismo.</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="num" aria-hidden="true"></span>
+        <div>
+          <h3>Planilla de comparación de candidatos</h3>
+          <p>Puntaje por competencia para dejar de decidir por la impresión de la última entrevista.</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="num" aria-hidden="true"></span>
+        <div>
+          <h3>Checklist de incorporación</h3>
+          <p>Qué tiene que estar listo el primer día para que la persona no se vaya en el primer mes:
+            papeles, equipo, referente y qué se espera de ella en la primera semana.</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="acciones acciones-centro" style="margin-top:36px">
+      <a class="btn btn-primario btn-grande" href="#descargar">Quiero la plantilla</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     3. PARA QUIÉN ES
+     ============================================================================ -->
+<section class="seccion">
+  <div class="wrap">
+    <div class="encabezado-seccion centrado">
+      <span class="eyebrow">Para quién es</span>
+      <h2>Si alguna de estas tres te suena, es para vos</h2>
+    </div>
+
+    <div class="grilla grilla-3">
+      <article class="tarjeta reveal">
+        <h3>Dueño de pyme que contrata solo</h3>
+        <p>Hacés las entrevistas entre dos reuniones y decidís con lo que te acordás.
+          La plantilla te deja el criterio escrito antes de empezar.</p>
+      </article>
+      <article class="tarjeta reveal">
+        <h3>Responsable de RR. HH. de un equipo chico</h3>
+        <p>Tenés que cubrir puestos de áreas que no conocés en detalle. La descripción de puesto
+          es la conversación que hay que tener con el jefe del área.</p>
+      </article>
+      <article class="tarjeta reveal">
+        <h3>Jefe que va a entrevistar por primera vez</h3>
+        <p>Nadie te enseñó a entrevistar. Con las preguntas ya armadas, la entrevista deja de ser
+          una charla y empieza a dar información comparable.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     4. QUIÉN LO HIZO
+     ============================================================================ -->
+<section class="seccion seccion-alt">
+  <div class="wrap autor">
+    <div>
+      <span class="eyebrow">Quién armó este material</span>
+      <h2>Talento Norte Consultores</h2>
+      <p class="lead">Somos una consultora de búsqueda y selección del NOA. Trabajamos con pymes
+        industriales, agro, logística y comercio en Salta, Jujuy y Tucumán. Esta plantilla es la
+        que completamos con cada cliente en la primera reunión de cada búsqueda.</p>
+      <p class="lead" style="margin-top:14px">La compartimos gratis porque el 80 % del resultado
+        de una búsqueda se define acá, antes de publicar el aviso.</p>
+    </div>
+    <div class="tarjeta">
+      <div class="metricas" style="grid-template-columns:1fr 1fr">
+        <div class="metrica"><b>140+</b><span>búsquedas cubiertas</span></div>
+        <div class="metrica"><b>12</b><span>años en la región</span></div>
+        <div class="metrica"><b>15</b><span>días hasta la terna</span></div>
+        <div class="metrica"><b>90</b><span>días de reposición</span></div>
+      </div>
+      <p style="margin-top:20px;text-align:center;font-size:.84rem;color:var(--ink-faint)">
+        <span class="rotulo-ejemplo">Ejemplo</span> Números de demostración: la consultora es ficticia.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     5. CIERRE
+     ============================================================================ -->
+<section class="seccion seccion-oscura centrado">
+  <div class="wrap wrap-angosto">
+    <h2>Descargala y usala en tu próxima búsqueda</h2>
+    <p class="lead" style="margin-top:14px">Son 12 páginas. La completás en una reunión de 40 minutos
+      con el jefe del área y ya tenés el perfil listo para salir a buscar.</p>
+    <div class="acciones acciones-centro" style="margin-top:28px">
+      <a class="btn btn-primario btn-grande" href="#descargar">Descargar gratis</a>
+    </div>
+    <p class="bajo-btn">¿Preferís que la búsqueda la hagamos nosotros?
+      <a href="../01-pedido-propuesta/" style="color:#fff;text-decoration:underline">Pedinos una propuesta</a>.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <p style="margin-bottom:10px"><strong style="color:#fff">Talento Norte Consultores</strong> ·
+      Búsqueda y selección en Salta, Jujuy y Tucumán</p>
+    <p class="legal" style="margin-top:18px">
+      Consultora <strong style="color:#D3E4EA">ficticia</strong> creada para este portafolio de
+      demostración. Los números son de ejemplo y el formulario no envía datos.
+      <br>© <span data-anio>2026</span> ·
+      <a href="../../legal/politica-privacidad.html">Política de privacidad</a> ·
+      <a href="../../index.html">Volver a la galería</a>
+    </p>
+  </div>
+</footer>
+
+<a class="wa-flotante" data-wa href="#" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.7-.1a11 11 0 0 1-4.5-2.9 9 9 0 0 1-1.8-3c-.2-.6 0-1.2.3-1.6l.6-.7c.2-.2.5-.2.7.1l1 1.7c.1.3.1.5 0 .7l-.4.5c-.2.2-.2.4 0 .6.4.7 1.6 2 2.7 2.4.3.1.5.1.7-.1l.5-.6c.2-.2.4-.2.7-.1l1.7.9c.3.1.4.5.2.9Z"/></svg>
+</a>
+
+<div class="cta-fija">
+  <a class="btn btn-primario btn-ancho" href="#descargar">Descargar la plantilla gratis</a>
+</div>
+
+<script src="../../assets/js/demo.js" defer></script>
+<script src="../../assets/js/nav.js" defer></script>
+</body>
+</html>
