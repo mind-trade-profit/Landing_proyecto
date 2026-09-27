@@ -53,6 +53,7 @@ landings-rrhh/
     servidor.mjs                  servidor estático para ver el sitio por HTTP
     capturar.mjs                  capturas + chequeo de contraste, desbordes y errores
     miniaturas.mjs                regenera las capturas de la galería en WebP
+    pruebas.mjs                   control funcional: barra, formularios, filtros
 ```
 
 Cada landing es un archivo HTML con su propio `<style>`. Lo que comparten las cuatro vive en
@@ -87,6 +88,17 @@ guarda la tira de capturas y devuelve un informe con:
 
 **Esa lista tiene que salir vacía antes de mandarle el link a nadie.** Las cuatro landings y la
 galería la tienen vacía hoy.
+
+`capturar.mjs` mira cómo se ve. Para mirar si **funciona**:
+
+```bash
+node herramientas/pruebas.mjs
+```
+
+Comprueba la barra del portafolio en las cuatro (el "3 de 4", las flechas, el link a la galería),
+las flechas del teclado, que los formularios validen y no envíen nada, que el consentimiento del CV
+sea obligatorio y no venga tildado, y que los filtros de búsquedas escondan y cuenten bien.
+Hoy da **20/20**.
 
 Para regenerar las capturas de la galería después de cambiar un diseño:
 
