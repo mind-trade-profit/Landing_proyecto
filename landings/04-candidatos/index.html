@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================================
+     LANDING 4 de 4 — CAPTACIÓN DE CANDIDATOS
+     Objetivo: conseguir los CV que alimentan las búsquedas que venden las otras
+     tres landings. Métrica: CV aptos por búsqueda.
+     ---------------------------------------------------------------------------
+     Es la única landing con obligación legal fuerte: sin casilla de
+     consentimiento y link a la política de privacidad no se sube un CV.
+     Ley 25.326: consentimiento libre, expreso e informado.
+
+     Además es la única que conviene que aparezca en Google (los consejos de CV
+     traen tráfico), así que en la landing real va "index, follow".
+     ============================================================================ -->
+
+<title>Trabajá en el NOA: búsquedas abiertas | Talento Norte Consultores</title>
+<meta name="description" content="Búsquedas abiertas en Salta, Jujuy y Tucumán. Mirá los puestos, cargá tu CV una sola vez y recibí avisos cuando salga una búsqueda para tu perfil.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://mind-trade-profit.github.io/landings-rrhh/landings/04-candidatos/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Talento Norte Consultores">
+<meta property="og:title" content="Búsquedas abiertas en Salta, Jujuy y Tucumán">
+<meta property="og:description" content="Mirá los puestos abiertos y cargá tu CV. Te avisamos cuando salga una búsqueda para tu perfil.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23114B5F'/%3E%3Cpath d='M20 7 23 16 32 19 23 22 20 31 17 22 8 19 17 16Z' fill='%23C9611F'/%3E%3C/svg%3E">
+
+<script>document.documentElement.className += ' js';</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../assets/css/base.css">
+
+<script>
+const CONFIG = {
+  whatsapp:        '5493870000000',
+  mensajeWhatsApp: 'Hola! Vi las búsquedas abiertas y quiero postularme.',
+  telefono:        '+543870000000',
+  email:           'candidatos@talentonorte.com.ar'
+};
+</script>
+
+<style>
+/* --- 1. PORTADA CON BUSCADOR -------------------------------------------- */
+.hero{ padding:clamp(38px,5vw,74px) 0 clamp(30px,4vw,48px); }
+.hero h1{ margin-bottom:16px; max-width:15ch; }
+.hero h1 em{ font-style:normal; color:var(--accent); }
+.hero .lead{ margin-bottom:30px; }
+.buscador{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg);
+  box-shadow:var(--shadow); padding:clamp(18px,2.4vw,24px);
+  display:grid; gap:14px; grid-template-columns:1fr;
+}
+@media (min-width:760px){ .buscador{ grid-template-columns:repeat(3,1fr); align-items:end; } }
+.buscador .campo > span{ font-size:.82rem; }
+.conteo{
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  flex-wrap:wrap; margin:clamp(26px,3.4vw,38px) 0 18px;
+}
+.conteo b{ font-family:var(--font-title); font-size:1.1rem; }
+
+/* --- 2. TARJETAS DE BÚSQUEDA -------------------------------------------- */
+.busquedas{ display:grid; gap:16px; grid-template-columns:1fr; }
+@media (min-width:720px){ .busquedas{ grid-template-columns:1fr 1fr; } }
+.busqueda{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:22px; display:flex; flex-direction:column; gap:12px;
+  transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+.busqueda:hover{ border-color:var(--brand-300); box-shadow:var(--shadow); transform:translateY(-2px); }
+.busqueda h3{ font-size:1.08rem; }
+.busqueda .empresa{ font-size:.88rem; color:var(--ink-faint); margin:-6px 0 0; }
+.etiquetas{ display:flex; flex-wrap:wrap; gap:8px; }
+.etiqueta{
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--surface-alt); color:var(--ink-soft);
+  border-radius:999px; padding:5px 11px; font-size:.8rem; font-weight:600;
+}
+.etiqueta.destacada{ background:var(--brand-100); color:var(--brand); }
+.etiqueta svg{ width:13px; height:13px; }
+.busqueda .pie-b{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  margin-top:auto; padding-top:14px; border-top:1px solid var(--line);
+}
+.busqueda .publicado{ font-size:.8rem; color:var(--ink-faint); }
+.busqueda .btn{ padding:10px 18px; font-size:.88rem; }
+.sin-resultados{
+  text-align:center; padding:44px 20px; color:var(--ink-faint);
+  border:1px dashed var(--line); border-radius:var(--radius);
+}
+
+/* --- 3. PROCESO DEL CANDIDATO ------------------------------------------- */
+.proceso-cand{ display:grid; gap:20px; grid-template-columns:1fr; }
+@media (min-width:860px){ .proceso-cand{ grid-template-columns:repeat(4,1fr); } }
+
+/* --- 4. CARGA DE CV ------------------------------------------------------ */
+.cv-grilla{ display:grid; gap:clamp(28px,4vw,52px); grid-template-columns:1fr; align-items:start; }
+@media (min-width:980px){ .cv-grilla{ grid-template-columns:.9fr 1.1fr; } }
+
+/* --- 5. ALERTAS ---------------------------------------------------------- */
+.alertas{
+  background:var(--accent-100); border:1px solid #F0D3C2; border-radius:var(--radius-lg);
+  padding:clamp(24px,3.2vw,40px);
+  display:grid; gap:24px; grid-template-columns:1fr; align-items:center;
+}
+@media (min-width:880px){ .alertas{ grid-template-columns:1fr 1fr; } }
+.alertas h2{ font-size:clamp(1.35rem,2.6vw,1.8rem); margin-bottom:10px; }
+.alertas p{ color:var(--ink-soft); margin:0; }
+.alertas form{ display:grid; gap:12px; }
+
+/* --- 6. CONSEJOS --------------------------------------------------------- */
+.consejo h3{ font-size:1.04rem; margin-bottom:10px; }
+.consejo p{ font-size:.95rem; }
+.consejo ul{ margin-top:12px; }
+</style>
+</head>
+
+<body>
+<a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera">
+  <div class="wrap">
+    <a class="marca" href="#inicio">
+      <img src="../../assets/img/logo-talento-norte.svg" alt="" aria-hidden="true">
+      <span>Talento Norte<small>Consultores en RR. HH. · NOA</small></span>
+    </a>
+    <nav aria-label="Secciones">
+      <a href="#busquedas">Búsquedas abiertas</a>
+      <a href="#proceso">Cómo es el proceso</a>
+      <a href="#consejos">Consejos</a>
+    </nav>
+    <a class="btn btn-primario" href="#cargar-cv">Cargar mi CV</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- ============================================================================
+     1. PORTADA + FILTROS
+     ============================================================================ -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <h1>Encontrá tu próximo trabajo en <em>el norte</em></h1>
+    <p class="lead">Búsquedas abiertas en Salta, Jujuy y Tucumán. Si ninguna es para vos, cargá el
+      CV igual: cuando salga una que encaje con tu perfil, te avisamos antes de publicarla.</p>
+
+    <!-- Los filtros no recargan la página: demo.js muestra y esconde tarjetas -->
+    <div class="buscador">
+      <label class="campo">
+        <span>Rubro</span>
+        <select data-filtro="rubro">
+          <option value="">Todos los rubros</option>
+          <option value="industria">Industria y producción</option>
+          <option value="agro">Agro</option>
+          <option value="logistica">Logística y depósito</option>
+          <option value="comercio">Comercio y ventas</option>
+          <option value="administracion">Administración</option>
+          <option value="it">Sistemas e IT</option>
+        </select>
+      </label>
+      <label class="campo">
+        <span>Zona</span>
+        <select data-filtro="zona">
+          <option value="">Todas las zonas</option>
+          <option value="salta">Salta</option>
+          <option value="jujuy">Jujuy</option>
+          <option value="tucuman">Tucumán</option>
+          <option value="remoto">Sin importar la zona</option>
+        </select>
+      </label>
+      <label class="campo">
+        <span>Modalidad</span>
+        <select data-filtro="modalidad">
+          <option value="">Cualquiera</option>
+          <option value="presencial">Presencial</option>
+          <option value="hibrido">Híbrido</option>
+          <option value="remoto">Remoto</option>
+        </select>
+      </label>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     2. BÚSQUEDAS DESTACADAS
+        En la landing real, agregar una búsqueda es copiar un <article> y cambiar
+        el texto y los tres data- del filtro. No hace falta base de datos.
+     ============================================================================ -->
+<section class="seccion" id="busquedas" style="padding-top:0">
+  <div class="wrap">
+    <div class="conteo">
+      <b data-conteo>8 búsquedas abiertas</b>
+      <span style="font-size:.86rem;color:var(--ink-faint)">
+        <span class="rotulo-ejemplo">Ejemplo</span> Búsquedas inventadas para la demostración.
+      </span>
+    </div>
+
+    <div class="busquedas">
+      <article class="busqueda" data-busqueda data-rubro="industria" data-zona="salta" data-modalidad="presencial">
+        <h3>Jefe de Mantenimiento</h3>
+        <p class="empresa">Planta alimenticia · General Güemes</p>
+        <div class="etiquetas">
+          <span class="etiqueta destacada">Salta</span>
+          <span class="etiqueta">Presencial</span>
+          <span class="etiqueta">Jornada completa</span>
+          <span class="etiqueta">Efectivo</span>
+        </div>
+        <div class="pie-b">
+          <span class="publicado">Publicada hace 2 días</span>
+          <a class="btn btn-marca" href="#cargar-cv">Postularme</a>
+        </div>
+      </article>
+
+      <article class="busqueda" data-busqueda data-rubro="industria" data-zona="salta" data-modalidad="presencial">
+        <h3>Operarios de Producción <span style="font-weight:400;color:var(--ink-faint)">(5 vacantes)</span></h3>
+        <p class="empresa">Industria de envases · Parque Industrial Salta</p>
+        <div class="etiquetas">
+          <span class="etiqueta destacada">Salta</span>
+          <span class="etiqueta">Presencial</span>
+          <span class="etiqueta">Turnos rotativos</span>
+          <span class="etiqueta">Sin experiencia previa</span>
+        </div>
+        <div class="pie-b">
+          <span class="publicado">Publicada hace 4 días</span>
+          <a class="btn btn-marca" href="#cargar-cv">Postularme</a>
+        </div>
+      </article>
+
+      <article class="busqueda" data-busqueda data-rubro="logistica" data-zona="salta" data-modalidad="presencial">
+        <h3>Encargado de Depósito</h3>
+        <p class="empresa">Distribuidora mayorista · Salta capital</p>
+        <div class="etiquetas">
+          <span class="etiqueta destacada">Salta</span>
+          <span class="etiqueta">Presencial</span>
+          <span class="etiqueta">Experiencia en stock</span>
+        </div>
+        <div class="pie-b">
+          <span class="publicado">Publicada hace 6 días</span>
+          <a class="btn btn-marca" href="#cargar-cv">Postularme</a>
+        </div>
+      </article>
+
+      <article class="busqueda" data-busqueda data-rubro="agro" data-zona="jujuy" data-modalidad="presencial">
+        <h3>Ingeniero Agrónomo</h3>
+        <p class="empresa">Finca citrícola · Valle de Perico, Jujuy</p>
+        <div class="etiquetas">
+          <span class="etiqueta destacada">Jujuy</span>
+          <span class="etiqueta">Presencial</span>
+          <span class="etiqueta">Con movilidad propia</span>
+        </div>
+        <div class="pie-b">
+          <span class="publicado">Publicada hace 1 semana</span>
+          <a class="btn btn-marca" href="#cargar-cv">Postularme</a>
+        </div>
+      </article>
+
+      <article class="busqueda" data-busqueda data-rubro="comercio" data-zona="tucuman" data-modalidad="presencial">
+        <h3>Vendedor de Salón</h3>
+        <p class="empresa">Cadena de electrodomésticos · San Miguel de Tucumán</p>
+        <div class="etiquetas">
+          <span class="etiqueta destacada">Tucumán</span>
+          <span class="etiqueta">Presencial</span>
+          <span class="etiqueta">Comisiones</span>
+        </div>
+        <div class="pie-b">
+          <span class="publicado">Publicada hace 3 días</span>
+          <a class="btn btn-marca" href="#cargar-cv">Postularme</a>
+        </div>
+      </article>
+
+      <article class="busqueda" data-busqueda data-rubro="it" data-zona="remoto" data-modalidad="remoto">
+        <h3>Analista de Sistemas Semi Senior</h3>
+        <p class="empresa">Software factory · Trabajo remoto desde cualquier provincia</p>
+        <div class="etiquetas">
+          <span class="etiqueta destacada">Remoto</span>
+          <span class="etiqueta">Remoto</span>
+          <span class="etiqueta">.NET y SQL</span>
+        </div>
+        <div class="pie-b">
+          <span class="publicado">Publicada ayer</span>
+          <a class="btn btn-marca" href="#cargar-cv">Postularme</a>
+        </div>
+      </article>
+
+      <article class="busqueda" data-busqueda data-rubro="administracion" data-zona="salta" data-modalidad="hibrido">
+        <h3>Administrativo Contable</h3>
+        <p class="empresa">Estudio contable · Salta capital</p>
+        <div class="etiquetas">
+          <span class="etiqueta destacada">Salta</span>
+          <span class="etiqueta">Híbrido</span>
+          <span class="etiqueta">Estudiante avanzado</span>
+        </div>
+        <div class="pie-b">
+          <span class="publicado">Publicada hace 5 días</span>
+          <a class="btn btn-marca" href="#cargar-cv">Postularme</a>
+        </div>
+      </article>
+
+      <article class="busqueda" data-busqueda data-rubro="agro" data-zona="tucuman" data-modalidad="presencial">
+        <h3>Supervisor de Cosecha</h3>
+        <p class="empresa">Empresa citrícola · Tucumán · Puesto de temporada</p>
+        <div class="etiquetas">
+          <span class="etiqueta destacada">Tucumán</span>
+          <span class="etiqueta">Presencial</span>
+          <span class="etiqueta">Temporada</span>
+        </div>
+        <div class="pie-b">
+          <span class="publicado">Publicada hace 2 semanas</span>
+          <a class="btn btn-marca" href="#cargar-cv">Postularme</a>
+        </div>
+      </article>
+    </div>
+
+    <p class="sin-resultados" data-sin-resultados hidden>
+      No hay búsquedas abiertas con esos filtros ahora mismo.<br>
+      <a href="#cargar-cv" style="color:var(--brand);font-weight:600;text-decoration:underline">Cargá tu CV igual</a>
+      y te avisamos cuando salga una.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================================
+     3. CÓMO ES EL PROCESO — el candidato quiere saber si le van a contestar
+     ============================================================================ -->
+<section class="seccion seccion-clara" id="proceso">
+  <div class="wrap">
+    <div class="encabezado-seccion">
+      <span class="eyebrow">Cómo sigue</span>
+      <h2>Qué pasa después de que te postulás</h2>
+      <p class="lead">Contestamos siempre, aunque la respuesta sea que no quedaste. Saber en qué
+        etapa estás es lo mínimo.</p>
+    </div>
+
+    <ol class="pasos proceso-cand">
+      <li class="paso reveal">
+        <h3>Recibimos tu CV</h3>
+        <p>Te llega un correo confirmando que entró. Si no lo ves, revisá la casilla de spam.</p>
+      </li>
+      <li class="paso reveal">
+        <h3>Te llamamos</h3>
+        <p>Si tu perfil encaja con la búsqueda, te contactamos en menos de una semana para una
+          primera entrevista por teléfono o video.</p>
+      </li>
+      <li class="paso reveal">
+        <h3>Entrevista y evaluación</h3>
+        <p>Una entrevista en profundidad y, según el puesto, una prueba técnica. Te contamos de qué
+          empresa se trata y cuál es la propuesta.</p>
+      </li>
+      <li class="paso reveal">
+        <h3>Entrevista con la empresa</h3>
+        <p>Si quedás entre los finalistas, coordinamos la entrevista con la empresa y te
+          acompañamos hasta la respuesta final.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================================
+     4. CARGA DE CV — la sección con obligación legal
+     ============================================================================ -->
+<section class="seccion seccion-oscura" id="cargar-cv" style="background:var(--brand-700)">
+  <div class="wrap cv-grilla">
+    <div>
+      <span class="eyebrow">Cargar mi CV</span>
+      <h2>Una sola vez, y quedás en la base</h2>
+      <p class="lead">No hace falta que te postules a una búsqueda en particular. Con el CV cargado
+        entrás en todas las que se abran para tu perfil en Salta, Jujuy y Tucumán.</p>
+
+      <ul class="lista-tilde" style="margin-top:26px">
+        <li>Tu CV lo vemos nosotros, no queda publicado en ningún lado.</li>
+        <li>Sólo se lo mostramos a la empresa de la búsqueda en la que avanzás.</li>
+        <li>Podés pedirnos que lo borremos cuando quieras, y lo borramos.</li>
+      </ul>
+    </div>
+
+    <div class="caja-form">
+      <h3>Dejanos tu CV</h3>
+      <p class="intro">Cinco datos y el archivo. Tarda menos de dos minutos.</p>
+
+      <p class="aviso-demo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
+        <span>Esta es una <strong>demo de portafolio</strong>: el formulario no envía ni guarda nada
+          y el archivo no se sube. Un CV son datos personales y GitHub Pages es público:
+          en la landing real esto va en el alojamiento del cliente con el formulario conectado.</span>
+      </p>
+
+      <form data-demo novalidate>
+        <div class="campos">
+          <div class="campos campos-2">
+            <label class="campo">
+              <span>Nombre y apellido</span>
+              <input type="text" name="nombre" autocomplete="name" required placeholder="Como figura en tu DNI">
+            </label>
+            <label class="campo">
+              <span>Teléfono o WhatsApp</span>
+              <input type="tel" name="telefono" autocomplete="tel" required placeholder="387 15 456 7890">
+            </label>
+          </div>
+
+          <label class="campo">
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" required placeholder="vos@correo.com">
+          </label>
+
+          <div class="campos campos-2">
+            <label class="campo">
+              <span>Puesto que buscás</span>
+              <input type="text" name="puesto" required placeholder="Ej.: Operario de producción">
+            </label>
+            <label class="campo">
+              <span>Dónde vivís</span>
+              <select name="zona" required>
+                <option value="">Elegí tu zona</option>
+                <option>Salta capital</option>
+                <option>Interior de Salta</option>
+                <option>Jujuy</option>
+                <option>Tucumán</option>
+                <option>Otra provincia</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="campo">
+            <span>Tu CV <span class="opcional">(PDF o Word, hasta 5 MB)</span></span>
+            <input type="file" name="cv" accept=".pdf,.doc,.docx" required>
+          </label>
+
+          <!-- ⚠️ OBLIGATORIO (Ley 25.326): consentimiento expreso + link a la política.
+               Esta casilla no puede venir tildada de fábrica ni ser opcional. -->
+          <label class="consentimiento">
+            <input type="checkbox" name="consentimiento" required>
+            <span>Autorizo a Talento Norte Consultores a guardar y tratar mis datos personales y mi
+              CV para procesos de selección, según la
+              <a href="../../legal/politica-privacidad.html">política de privacidad</a>.
+              Sé que puedo pedir el acceso, la corrección o la eliminación de mis datos cuando quiera.</span>
+          </label>
+
+          <button class="btn btn-primario btn-ancho btn-grande" type="submit">Enviar mi CV</button>
+        </div>
+
+        <p class="form-ok">
+          <b>Listo: así se ve la confirmación.</b><br>
+          En la landing real, acá el candidato lee que su CV entró y le llega un correo con la
+          confirmación. El aviso le llega a la consultora al instante.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     5. ALERTAS DE NUEVAS BÚSQUEDAS
+     ============================================================================ -->
+<section class="seccion seccion-clara">
+  <div class="wrap">
+    <div class="alertas">
+      <div>
+        <h2>Enterate antes que el resto</h2>
+        <p>Te avisamos por correo o WhatsApp cuando se abra una búsqueda de tu rubro y tu zona.
+          Un mensaje cuando hay algo, nada más. Te podés dar de baja con un clic.</p>
+      </div>
+      <form data-demo novalidate>
+        <label class="campo">
+          <span>Tu email</span>
+          <input type="email" name="email" autocomplete="email" required placeholder="vos@correo.com">
+        </label>
+        <label class="campo">
+          <span>Rubro que te interesa</span>
+          <select name="rubro" required>
+            <option value="">Elegí un rubro</option>
+            <option>Industria y producción</option>
+            <option>Agro</option>
+            <option>Logística y depósito</option>
+            <option>Comercio y ventas</option>
+            <option>Administración</option>
+            <option>Sistemas e IT</option>
+          </select>
+        </label>
+        <label class="consentimiento">
+          <input type="checkbox" name="acepto" required>
+          <span>Acepto recibir avisos de búsquedas.
+            <a href="../../legal/politica-privacidad.html">Cómo tratamos los datos</a>.</span>
+        </label>
+        <button class="btn btn-marca btn-ancho" type="submit">Quiero los avisos</button>
+        <p class="form-ok">
+          <b>Así se ve la confirmación.</b> En la landing real el candidato queda suscripto a los
+          avisos de su rubro.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     6. CONSEJOS — dan confianza y traen tráfico de Google
+     ============================================================================ -->
+<section class="seccion" id="consejos">
+  <div class="wrap">
+    <div class="encabezado-seccion">
+      <span class="eyebrow">Consejos</span>
+      <h2>Lo que miramos cuando abrimos un CV</h2>
+      <p class="lead">Somos los que leen doscientos por búsqueda. Esto es lo que hace que uno se
+        separe del montón.</p>
+    </div>
+
+    <div class="grilla grilla-3">
+      <article class="tarjeta consejo reveal">
+        <h3>Tu CV en una hoja</h3>
+        <p>Dos como máximo. Lo primero tiene que ser el puesto que buscás y tu experiencia más
+          reciente, no el secundario.</p>
+        <ul class="lista-tilde">
+          <li>Poné resultados, no tareas: «bajé la rotación del turno noche», no «supervisión».</li>
+          <li>Fechas de inicio y fin en cada trabajo.</li>
+          <li>Un teléfono que atiendas y un correo serio.</li>
+        </ul>
+      </article>
+
+      <article class="tarjeta consejo reveal">
+        <h3>Antes de la entrevista</h3>
+        <p>Media hora de preparación se nota desde la primera respuesta.</p>
+        <ul class="lista-tilde">
+          <li>Averiguá qué hace la empresa y con qué trabaja.</li>
+          <li>Llevá tres ejemplos concretos de problemas que resolviste.</li>
+          <li>Pensá qué sueldo pretendés: te lo van a preguntar.</li>
+        </ul>
+      </article>
+
+      <article class="tarjeta consejo reveal">
+        <h3>Preguntas que siempre aparecen</h3>
+        <p>No hay respuestas correctas, pero sí respuestas preparadas.</p>
+        <ul class="lista-tilde">
+          <li>Por qué te fuiste del trabajo anterior.</li>
+          <li>Un error que hayas cometido y qué hiciste después.</li>
+          <li>Qué buscás en el próximo trabajo, más allá del sueldo.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <div class="grilla grilla-3">
+      <div>
+        <span class="marca" style="color:#fff">
+          <img src="../../assets/img/logo-talento-norte.svg" alt="" aria-hidden="true">
+          <span>Talento Norte<small style="color:#9FBDC8">Consultores en RR. HH.</small></span>
+        </span>
+        <p style="margin-top:16px">Búsquedas abiertas en Salta, Jujuy y Tucumán.</p>
+      </div>
+      <div>
+        <h4>Candidatos</h4>
+        <ul>
+          <li><a href="#busquedas">Búsquedas abiertas</a></li>
+          <li><a href="#cargar-cv">Cargar mi CV</a></li>
+          <li><a href="#consejos">Consejos de CV y entrevista</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Empresas</h4>
+        <ul>
+          <li><a href="../01-pedido-propuesta/">Pedir una propuesta</a></li>
+          <li><a href="../03-taller-webinar/">Taller para quien contrata</a></li>
+          <li><a href="../../legal/politica-privacidad.html">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legal">
+      Talento Norte Consultores es una <strong style="color:#D3E4EA">consultora ficticia</strong>
+      creada para este portafolio de demostración. Las búsquedas son inventadas y el formulario no
+      envía ni guarda datos: ningún CV se sube desde esta página.
+      <br>© <span data-anio>2026</span> · <a href="../../index.html">Volver a la galería</a>
+    </p>
+  </div>
+</footer>
+
+<a class="wa-flotante" data-wa href="#" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.7-.1a11 11 0 0 1-4.5-2.9 9 9 0 0 1-1.8-3c-.2-.6 0-1.2.3-1.6l.6-.7c.2-.2.5-.2.7.1l1 1.7c.1.3.1.5 0 .7l-.4.5c-.2.2-.2.4 0 .6.4.7 1.6 2 2.7 2.4.3.1.5.1.7-.1l.5-.6c.2-.2.4-.2.7-.1l1.7.9c.3.1.4.5.2.9Z"/></svg>
+</a>
+
+<div class="cta-fija">
+  <a class="btn btn-primario btn-ancho" href="#cargar-cv">Cargar mi CV</a>
+</div>
+
+<script src="../../assets/js/demo.js" defer></script>
+<script src="../../assets/js/nav.js" defer></script>
+</body>
+</html>
