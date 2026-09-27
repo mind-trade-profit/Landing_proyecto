@@ -4,3 +4,7 @@ node_modules/
 Thumbs.db
 desktop.ini
 .tmp-perfil/
+
+# La ficha del referidor tiene los precios: se genera en local y no se publica.
+# Para publicarla, borrá esta línea y corré: node herramientas/ficha.mjs
+ficha/

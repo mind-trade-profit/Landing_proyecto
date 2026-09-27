@@ -49,8 +49,7 @@ landings-rrhh/
     03-taller-webinar/index.html
     04-candidatos/index.html
   legal/politica-privacidad.html  modelo sobre la Ley 25.326
-  ficha/ficha-referidor.html      la hoja que le das al cliente referidor
-  ficha/ficha-referidor.pdf       la misma, lista para reenviar por WhatsApp
+  ficha/                          la hoja del referidor · NO se publica (tiene precios)
   herramientas/
     servidor.mjs                  servidor estático para ver el sitio por HTTP
     capturar.mjs                  capturas + chequeo de contraste, desbordes y errores
@@ -154,9 +153,10 @@ node herramientas/ficha.mjs
 Avisa si el contenido se fue de una página, que es lo único que no puede pasar: una ficha de dos
 hojas no se reenvía.
 
-> **Ojo con los precios.** La ficha los tiene. Si no querés que sean públicos, sumá `ficha/` al
-> `.gitignore` **antes** de publicar el repositorio y mandá el PDF por WhatsApp. Lo que está en un
-> repositorio público lo ve cualquiera, aunque no haya ningún link que lleve hasta ahí.
+> **`ficha/` está fuera del repositorio a propósito**, porque tiene los precios y el repositorio es
+> público: lo que se sube queda en el historial de git aunque después se borre el archivo. El PDF
+> vive en tu máquina y se manda por WhatsApp. Si algún día querés publicarla, sacá `ficha/` del
+> `.gitignore`.
 
 ---
 
@@ -224,5 +224,5 @@ portafolio. Las landings de los clientes van en Netlify o en el alojamiento del 
 - [ ] Armar el PDF de la landing 02 (hoy el botón de descarga avisa que es una demo).
 - [x] Imágenes `og:` de 1200×630 para la vista previa al compartir los links.
 - [x] Ficha de una página en PDF para que el referidor la reenvíe.
-- [ ] Decidir si `ficha/` se publica o queda fuera del repositorio (tiene los precios).
+- [x] `ficha/` queda fuera del repositorio: tiene los precios y el repositorio es público.
 - [ ] Completar el WhatsApp en la ficha y volver a generar el PDF.
