@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<!-- ============================================================================
+     Plantilla de las imágenes de vista previa (og:image), 1200x630.
+     No se publica: la usa herramientas/og.mjs, que le cambia los textos y le
+     saca una captura. Para retocar el diseño de las previews, se toca acá.
+     ============================================================================ -->
+<title>Plantilla og</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    width:1200px; height:630px; overflow:hidden;
+    font-family:'Inter',sans-serif; background:#114B5F; color:#EAF2F5;
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding:66px 72px; position:relative;
+  }
+  /* Estrella de la marca, grande y recortada: da profundidad sin cargar una foto */
+  .marca-fondo{
+    position:absolute; right:-90px; bottom:-120px; width:520px; height:520px;
+    opacity:.12; pointer-events:none;
+  }
+  .encabezado{ display:flex; align-items:center; gap:16px; }
+  .encabezado img{ width:52px; height:52px; }
+  .encabezado b{
+    font-family:'Sora',sans-serif; font-size:23px; font-weight:700; letter-spacing:-.01em;
+    display:block; color:#fff;
+  }
+  .encabezado small{ font-size:15px; color:#8FC7DA; letter-spacing:.02em; }
+  h1{
+    font-family:'Sora',sans-serif; font-size:66px; line-height:1.08; letter-spacing:-.03em;
+    color:#fff; max-width:17ch; position:relative;
+  }
+  h1 em{ font-style:normal; color:#F0A876; }
+  .pie{ display:flex; align-items:center; gap:18px; position:relative; }
+  .chip{
+    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.26);
+    border-radius:999px; padding:11px 22px; font-size:19px; font-weight:600; color:#EAF2F5;
+  }
+  .accion{
+    background:#C9611F; border-radius:999px; padding:12px 26px;
+    font-size:19px; font-weight:700; color:#fff;
+  }
+
+  /* Variante clara, para la portada del portafolio */
+  body.clara{ background:#F8F7F4; color:#45504F; }
+  body.clara h1{ color:#17201F; }
+  body.clara h1 em{ color:#A64A17; }
+  body.clara .encabezado b{ color:#17201F; }
+  body.clara .encabezado small{ color:#646D6C; }
+  body.clara .chip{ background:#E3EEF2; border-color:#C7DDE5; color:#114B5F; }
+  body.clara .marca-fondo{ opacity:.07; }
+</style>
+</head>
+<body>
+  <svg class="marca-fondo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M20 7 23 16 32 19 23 22 20 31 17 22 8 19 17 16Z" fill="#C9611F"/>
+  </svg>
+
+  <div class="encabezado">
+    <img src="../assets/img/logo-talento-norte.svg" alt="">
+    <span>
+      <b id="marca">Talento Norte Consultores</b>
+      <small id="bajada">Búsqueda y selección · Salta, Jujuy y Tucumán</small>
+    </span>
+  </div>
+
+  <h1 id="titulo">Título de la landing</h1>
+
+  <div class="pie">
+    <span class="chip" id="chip">Para empresas</span>
+    <span class="accion" id="accion">Pedir propuesta</span>
+  </div>
+</body>
+</html>

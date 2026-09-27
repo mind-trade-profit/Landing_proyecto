@@ -54,6 +54,8 @@ landings-rrhh/
     capturar.mjs                  capturas + chequeo de contraste, desbordes y errores
     miniaturas.mjs                regenera las capturas de la galería en WebP
     pruebas.mjs                   control funcional: barra, formularios, filtros
+    og.mjs + plantilla-og.html    las imágenes de vista previa de 1200x630
+    configurar.mjs                pone el WhatsApp real y la dirección final
 ```
 
 Cada landing es un archivo HTML con su propio `<style>`. Lo que comparten las cuatro vive en
@@ -136,6 +138,28 @@ La barra recalcula sola el "5 de 5", las flechas y el orden.
 
 ---
 
+## Antes de publicar: el WhatsApp y la dirección
+
+Son los dos datos repartidos en varios archivos. Se cambian de una:
+
+```bash
+node herramientas/configurar.mjs --whatsapp=5493875551234 --base=https://TUCUENTA.github.io/landings-rrhh
+```
+
+El número va con código de país y sin `+`, espacios ni guiones. La dirección, sin barra al final.
+
+En las demos, el WhatsApp apunta a **tu** número y no al de la consultora ficticia: si una
+consultora toca el botón mientras mira la demo, cae en un chat de verdad y el mensaje ya dice de
+qué landing viene. En la landing de un cliente se pone el número del cliente.
+
+Las imágenes de vista previa (las que se ven al pegar el link en WhatsApp o LinkedIn) se regeneran con:
+
+```bash
+node herramientas/og.mjs
+```
+
+---
+
 ## Publicar en GitHub Pages
 
 1. Crear un repositorio **público** llamado `landings-rrhh` (en el plan gratuito, Pages necesita que
@@ -159,7 +183,7 @@ alojamiento del cliente.
 
 ## Pendientes
 
-- [ ] Poner el WhatsApp real en `assets/js/nav.js` (constante `CONTACTO`) y en el `CONFIG` de `index.html`.
-- [ ] Generar las imágenes `og:` de 1200×630 para la vista previa al compartir los links.
+- [ ] Correr `configurar.mjs` con el WhatsApp real y la dirección definitiva.
 - [ ] Armar el PDF de la landing 02 (hoy el botón de descarga avisa que es una demo).
+- [x] Imágenes `og:` de 1200×630 para la vista previa al compartir los links.
 - [ ] Ficha de una página en PDF para que el referidor la reenvíe.
