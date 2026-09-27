@@ -184,22 +184,47 @@ node herramientas/og.mjs
 
 ## Publicar en GitHub Pages
 
-1. Crear un repositorio **público** llamado `landings-rrhh` (en el plan gratuito, Pages necesita que
-   sea público).
-2. Subir los archivos:
-   ```bash
-   git remote add origin https://github.com/USUARIO/landings-rrhh.git
-   git push -u origin main
-   ```
-3. En **Settings → Pages**, elegir **Deploy from a branch**, rama `main`, carpeta `/ (root)`, y guardar.
-4. Esperar hasta diez minutos y abrir la dirección del sitio.
-5. Probar en celular y computadora: la galería, las cuatro landings, la barra y el botón de contacto.
+**1. Crear el repositorio.** Tiene que ser **público**: en el plan gratuito, Pages no funciona en
+repositorios privados.
 
-El archivo `.nojekyll` ya está: evita que GitHub procese el sitio con Jekyll y se saltee carpetas.
+Con `gh` (la primera vez pide iniciar sesión):
+
+```bash
+gh auth login
+```
+
+```bash
+gh repo create landings-rrhh --public --source=. --remote=origin --push
+```
+
+O a mano, creando el repositorio desde la web de GitHub y después:
+
+```bash
+git remote add origin https://github.com/TUCUENTA/landings-rrhh.git
+```
+
+```bash
+git push -u origin main
+```
+
+**2. Encender Pages.** En el repositorio, **Settings → Pages**: en *Source* elegir
+**Deploy from a branch**, rama `main`, carpeta `/ (root)`, y guardar. El archivo `.nojekyll` ya
+está, así que GitHub no va a procesar el sitio con Jekyll ni saltear carpetas.
+
+**3. Esperar** hasta diez minutos y abrir `https://TUCUENTA.github.io/landings-rrhh/`.
+
+**4. Revisar, en el celular y en la computadora:**
+
+- la galería y las cuatro landings abren y se ven bien;
+- la barra pasa de una a otra y el botón «Quiero la mía» abre tu WhatsApp;
+- pegar el link en un chat y confirmar que aparece la vista previa con la imagen;
+- correr el control funcional contra el sitio publicado, no sólo contra los archivos locales.
+
+**5. Repartir el link:** perfil de LinkedIn, firma de WhatsApp y el mensaje del referidor.
 
 **Lo que GitHub Pages no es:** no se puede usar para operar un negocio ni para procesar datos
-personales. Sirve para el portafolio. Las landings de los clientes van en Netlify o en el
-alojamiento del cliente.
+personales, y el sitio publicado no puede superar 1 GB (hoy pesa menos de 500 KB). Sirve para el
+portafolio. Las landings de los clientes van en Netlify o en el alojamiento del cliente.
 
 ---
 
