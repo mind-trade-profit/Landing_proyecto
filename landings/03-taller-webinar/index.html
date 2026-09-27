@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================================
+     LANDING 3 de 4 — TALLER EN VIVO (empresas · etapa de consideración)
+     Objetivo: que responsables de RR. HH. y dueños reserven su lugar.
+     Métrica: registrados, asistentes y reuniones que salen del taller.
+     ---------------------------------------------------------------------------
+     La fecha y la cuenta regresiva las calcula demo.js: siempre el próximo
+     jueves a las 18:00. Una demo con fecha vencida se ve peor que no tener demo.
+     En la landing real se reemplaza proximoJueves() por la fecha verdadera.
+     ============================================================================ -->
+
+<title>Taller gratuito: entrevistar por competencias en 45 minutos</title>
+<meta name="description" content="Taller en vivo y gratuito para dueños y responsables de RR. HH. del NOA: cómo entrevistar por competencias en 45 minutos y decidir con criterio comparable.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://mind-trade-profit.github.io/landings-rrhh/landings/03-taller-webinar/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Talento Norte Consultores">
+<meta property="og:title" content="Taller gratuito: entrevistar por competencias en 45 minutos">
+<meta property="og:description" content="En vivo, por Zoom. Para dueños de pyme y responsables de RR. HH. del noroeste argentino.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23114B5F'/%3E%3Cpath d='M20 7 23 16 32 19 23 22 20 31 17 22 8 19 17 16Z' fill='%23C9611F'/%3E%3C/svg%3E">
+
+<script>document.documentElement.className += ' js';</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../assets/css/base.css">
+
+<script>
+const CONFIG = {
+  whatsapp:        '5493870000000',
+  mensajeWhatsApp: 'Hola! Quiero reservar mi lugar en el taller de entrevistas.',
+  telefono:        '+543870000000',
+  email:           'talleres@talentonorte.com.ar'
+};
+</script>
+
+<style>
+/* --- 1. PORTADA OSCURA — un taller en vivo se anuncia, no se explica ----- */
+.portada{
+  background:var(--brand); color:#EAF2F5;
+  padding:clamp(40px,5.5vw,80px) 0 clamp(44px,6vw,86px);
+}
+.portada-grilla{ display:grid; gap:clamp(32px,4vw,56px); align-items:center; grid-template-columns:1fr; }
+@media (min-width:980px){ .portada-grilla{ grid-template-columns:1.1fr .9fr; } }
+.portada h1{ color:#fff; margin-bottom:18px; }
+.portada h1 em{ font-style:normal; color:#F0A876; }
+.portada .lead{ color:#C9DCE4; margin-bottom:26px; }
+.envivo{
+  display:inline-flex; align-items:center; gap:9px; margin-bottom:18px;
+  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.24);
+  border-radius:999px; padding:7px 15px; font-size:.84rem; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase;
+}
+.envivo .punto{
+  width:9px; height:9px; border-radius:50%; background:#F0A876;
+  box-shadow:0 0 0 0 rgba(240,168,118,.7); animation:latir 2s infinite;
+}
+@keyframes latir{
+  70%{ box-shadow:0 0 0 9px rgba(240,168,118,0); }
+  100%{ box-shadow:0 0 0 0 rgba(240,168,118,0); }
+}
+.datos-taller{ display:flex; flex-wrap:wrap; gap:12px 26px; margin-bottom:28px; font-size:.96rem; }
+.datos-taller span{ display:inline-flex; align-items:center; gap:9px; color:#D3E4EA; }
+.datos-taller svg{ width:18px; height:18px; color:#8FC7DA; flex:none; }
+
+/* --- 2. CUENTA REGRESIVA ------------------------------------------------- */
+.reloj{ display:flex; gap:10px; margin-bottom:8px; }
+.reloj div{
+  flex:1; text-align:center; background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.16); border-radius:12px; padding:12px 6px;
+}
+.reloj b{
+  display:block; font-family:var(--font-title); font-size:clamp(1.5rem,3.4vw,2.1rem);
+  line-height:1.1; color:#fff; font-variant-numeric:tabular-nums;
+}
+.reloj span{ font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:#A8C6D1; }
+.cupos{ font-size:.86rem; color:#A8C6D1; }
+
+/* --- 3. QUÉ VAS A APRENDER ---------------------------------------------- */
+.aprender li{
+  display:flex; gap:15px; align-items:flex-start; padding:18px 0;
+  border-bottom:1px solid var(--line);
+}
+.aprender li:last-child{ border-bottom:0; }
+.aprender .marca-n{
+  flex:none; width:32px; height:32px; border-radius:50%;
+  background:var(--brand); color:#fff; display:grid; place-items:center;
+  font-weight:700; font-size:.88rem;
+}
+.aprender h3{ font-size:1.04rem; margin-bottom:5px; }
+.aprender p{ color:var(--ink-soft); font-size:.95rem; margin:0; }
+
+/* --- 4. QUIÉN LO DICTA --------------------------------------------------- */
+.docente{ display:grid; gap:clamp(22px,3vw,40px); grid-template-columns:1fr; align-items:center; }
+@media (min-width:820px){ .docente{ grid-template-columns:auto 1fr; } }
+.docente .avatar{
+  width:132px; height:132px; border-radius:50%; margin-inline:auto;
+  background:var(--brand-100); color:var(--brand);
+  display:grid; place-items:center;
+  font-family:var(--font-title); font-size:2.4rem; font-weight:700;
+  border:3px solid var(--surface); box-shadow:var(--shadow);
+}
+
+/* --- 5. AGENDA ----------------------------------------------------------- */
+.agenda li{
+  display:grid; grid-template-columns:70px 1fr; gap:18px; align-items:baseline;
+  padding:14px 0; border-bottom:1px dashed var(--line);
+}
+.agenda li:last-child{ border-bottom:0; }
+.agenda .min{
+  font-family:var(--font-title); font-weight:700; color:var(--accent); font-size:.94rem;
+  font-variant-numeric:tabular-nums;
+}
+.agenda b{ display:block; font-size:1rem; }
+.agenda small{ color:var(--ink-soft); font-size:.92rem; }
+
+/* --- 6. REGISTRO --------------------------------------------------------- */
+.registro{ background:var(--brand-700); }
+.registro-grilla{ display:grid; gap:clamp(28px,4vw,52px); grid-template-columns:1fr; align-items:start; }
+@media (min-width:980px){ .registro-grilla{ grid-template-columns:1fr 1fr; } }
+.recordatorio{
+  display:flex; gap:12px; align-items:flex-start; padding:14px 16px; margin-bottom:12px;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--radius-sm); font-size:.93rem; color:#D3E4EA;
+}
+.recordatorio svg{ width:20px; height:20px; flex:none; color:#8FC7DA; }
+.recordatorio b{ color:#fff; display:block; }
+</style>
+</head>
+
+<body>
+<a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera">
+  <div class="wrap">
+    <span class="marca">
+      <img src="../../assets/img/logo-talento-norte.svg" alt="" aria-hidden="true">
+      <span>Talento Norte<small>Consultores en RR. HH. · NOA</small></span>
+    </span>
+    <a class="btn btn-primario" href="#reservar">Reservar mi lugar</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- ============================================================================
+     1. PORTADA — título, fecha, cuenta regresiva y la acción
+     ============================================================================ -->
+<section class="portada">
+  <div class="wrap portada-grilla">
+    <div>
+      <span class="envivo"><span class="punto" aria-hidden="true"></span> En vivo · Gratis</span>
+      <h1>Entrevistar por competencias en <em>45 minutos</em></h1>
+      <p class="lead">Un taller práctico para dueños de pyme y responsables de RR. HH.: cómo llevar
+        una entrevista que dé información comparable, en el tiempo que tenés de verdad entre
+        reunión y reunión.</p>
+
+      <div class="datos-taller">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 11h18"/></svg>
+          <b data-fecha-taller>Próximo jueves, 18:00 h</b>
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          60 minutos, con preguntas
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 11 6-3v8l-6-3Z"/></svg>
+          Por Zoom, desde donde estés
+        </span>
+      </div>
+
+      <div class="acciones">
+        <a class="btn btn-primario btn-grande" href="#reservar">Reservar mi lugar</a>
+      </div>
+      <p class="bajo-btn" style="color:#A8C6D1">Se graba. Si no podés entrar en vivo, te mandamos la grabación.</p>
+    </div>
+
+    <!-- Cuenta regresiva: le pone fecha límite a una decisión que no tiene urgencia propia -->
+    <div>
+      <p style="font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;color:#A8C6D1;margin-bottom:12px">
+        Empieza en
+      </p>
+      <div class="reloj" data-cuenta role="timer" aria-label="Tiempo que falta para el taller">
+        <div><b data-u="dias">00</b><span>días</span></div>
+        <div><b data-u="horas">00</b><span>horas</span></div>
+        <div><b data-u="min">00</b><span>min</span></div>
+        <div><b data-u="seg">00</b><span>seg</span></div>
+      </div>
+      <p class="cupos">Cupo de 40 lugares para que se pueda preguntar en vivo.
+        <span class="rotulo-ejemplo">Ejemplo</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     2. QUÉ VAS A APRENDER — tres puntos, no diez
+     ============================================================================ -->
+<section class="seccion seccion-clara">
+  <div class="wrap wrap-angosto">
+    <div class="encabezado-seccion">
+      <span class="eyebrow">Qué vas a aprender</span>
+      <h2>Tres cosas que podés aplicar en la entrevista del lunes</h2>
+    </div>
+
+    <ul class="aprender">
+      <li class="reveal">
+        <span class="marca-n" aria-hidden="true">1</span>
+        <div>
+          <h3>Qué preguntar cuando el CV ya no dice nada</h3>
+          <p>Cómo pasar de «contame de vos» a preguntas sobre situaciones reales que la persona
+            resolvió, y qué parte de la respuesta es la que importa.</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="marca-n" aria-hidden="true">2</span>
+        <div>
+          <h3>Cómo comparar dos candidatos sin que gane el más simpático</h3>
+          <p>Una planilla de puntaje por competencia y por qué conviene anotar durante la
+            entrevista y no después.</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="marca-n" aria-hidden="true">3</span>
+        <div>
+          <h3>Las señales que casi siempre se pasan por alto</h3>
+          <p>Motivos de salida, expectativa de sueldo y disponibilidad: las tres preguntas que
+            evitan descubrir el problema cuando la persona ya está contratada.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================================
+     3. QUIÉN LO DICTA
+        En la demo no usamos fotos de personas reales con nombres inventados:
+        va un avatar con iniciales. En la landing del cliente va su foto.
+     ============================================================================ -->
+<section class="seccion">
+  <div class="wrap docente">
+    <div class="avatar" aria-hidden="true">VA</div>
+    <div>
+      <span class="eyebrow">Quién lo dicta</span>
+      <h2>Valeria A. <span class="rotulo-ejemplo">Ejemplo</span></h2>
+      <p class="lead">Socia de Talento Norte Consultores. Licenciada en Psicología, doce años
+        seleccionando personal en la región: plantas industriales, agro, logística y comercio.
+        Condujo más de mil entrevistas y entrenó a los equipos de RR. HH. de varias pymes del NOA
+        para que hagan las suyas.</p>
+      <p class="lead" style="margin-top:12px">«El taller no es teoría de manual: son las preguntas
+        que uso yo, con los errores que cometí antes de aprenderlas.»</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     4. AGENDA DEL ENCUENTRO
+     ============================================================================ -->
+<section class="seccion seccion-alt">
+  <div class="wrap wrap-angosto">
+    <div class="encabezado-seccion">
+      <span class="eyebrow">Agenda</span>
+      <h2>Una hora, minuto a minuto</h2>
+      <p class="lead">Sin presentaciones largas: arrancamos a los tres minutos.</p>
+    </div>
+
+    <ul class="agenda">
+      <li><span class="min">0–5</span><span><b>Por qué la entrevista decide más que el CV</b>
+        <small>El costo real de elegir mal y dónde se rompe el proceso en una pyme.</small></span></li>
+      <li><span class="min">5–20</span><span><b>Armar la entrevista antes de la entrevista</b>
+        <small>De la descripción del puesto a cuatro competencias y sus preguntas.</small></span></li>
+      <li><span class="min">20–40</span><span><b>Entrevista en vivo</b>
+        <small>Simulamos una entrevista real y vamos comentando qué preguntar y qué escuchar.</small></span></li>
+      <li><span class="min">40–50</span><span><b>Cómo comparar y decidir</b>
+        <small>La planilla de puntaje y cómo se llena mientras la persona habla.</small></span></li>
+      <li><span class="min">50–60</span><span><b>Preguntas de los participantes</b>
+        <small>Traé tu caso: la búsqueda que tenés abierta ahora.</small></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================================
+     5. TESTIMONIOS DE TALLERES ANTERIORES (rotulados como ejemplo)
+     ============================================================================ -->
+<section class="seccion">
+  <div class="wrap">
+    <div class="encabezado-seccion centrado">
+      <span class="eyebrow">Ediciones anteriores</span>
+      <h2>Qué dijeron los que ya vinieron</h2>
+      <p class="lead"><span class="rotulo-ejemplo">Ejemplo</span> Testimonios inventados para la demostración.</p>
+    </div>
+
+    <div class="grilla grilla-3">
+      <figure class="testimonio reveal">
+        <blockquote>«Salí con la planilla de puntaje armada para la búsqueda que tenía abierta.
+          Al día siguiente la usé.»</blockquote>
+        <footer><span class="inicial" aria-hidden="true">PD</span>
+          <span>Pablo D. · Dueño, taller metalúrgico <span class="rotulo-ejemplo">Ejemplo</span></span></footer>
+      </figure>
+      <figure class="testimonio reveal">
+        <blockquote>«La entrevista en vivo vale sola el taller. Ver dónde repreguntar cambia
+          todo.»</blockquote>
+        <footer><span class="inicial" aria-hidden="true">RM</span>
+          <span>Romina M. · RR. HH., empresa de logística <span class="rotulo-ejemplo">Ejemplo</span></span></footer>
+      </figure>
+      <figure class="testimonio reveal">
+        <blockquote>«Pensé que era una hora de venta y fue una hora de trabajo. Volvería a
+          anotarme.»</blockquote>
+        <footer><span class="inicial" aria-hidden="true">GS</span>
+          <span>Gonzalo S. · Gerente comercial <span class="rotulo-ejemplo">Ejemplo</span></span></footer>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     6. REGISTRO — con los recordatorios, que son los que llenan la sala
+     ============================================================================ -->
+<section class="seccion seccion-oscura registro" id="reservar">
+  <div class="wrap registro-grilla">
+    <div>
+      <span class="eyebrow">Reservar mi lugar</span>
+      <h2>Gratis, con cupo limitado</h2>
+      <p class="lead">Entre la inscripción y el taller pasan días: los recordatorios son los que
+        deciden cuánta gente entra realmente.</p>
+
+      <div style="margin-top:26px">
+        <div class="recordatorio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <span><b>Al anotarte</b>El correo de confirmación con el link de Zoom y el archivo para
+            agendarlo en tu calendario.</span>
+        </div>
+        <div class="recordatorio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span><b>El día anterior</b>Un recordatorio corto con el tema y el horario.</span>
+        </div>
+        <div class="recordatorio">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.7-.1a11 11 0 0 1-4.5-2.9 9 9 0 0 1-1.8-3c-.2-.6 0-1.2.3-1.6l.6-.7c.2-.2.5-.2.7.1l1 1.7c.1.3.1.5 0 .7l-.4.5c-.2.2-.2.4 0 .6.4.7 1.6 2 2.7 2.4.3.1.5.1.7-.1l.5-.6c.2-.2.4-.2.7-.1l1.7.9c.3.1.4.5.2.9Z"/></svg>
+          <span><b>Una hora antes</b>Un WhatsApp con el link, para no tener que buscar el correo.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="caja-form">
+      <h3>Anotarme al taller</h3>
+      <p class="intro" data-fecha-taller="corta">Próximo jueves</p>
+
+      <p class="aviso-demo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
+        <span>Esta es una <strong>demo de portafolio</strong>: el formulario no envía ni guarda
+          ningún dato. En la landing real se conecta al sistema de correos y al Zoom del cliente.</span>
+      </p>
+
+      <form data-demo novalidate>
+        <div class="campos">
+          <div class="campos campos-2">
+            <label class="campo">
+              <span>Nombre</span>
+              <input type="text" name="nombre" autocomplete="name" required placeholder="Nombre y apellido">
+            </label>
+            <label class="campo">
+              <span>Empresa</span>
+              <input type="text" name="empresa" autocomplete="organization" required placeholder="Dónde trabajás">
+            </label>
+          </div>
+          <label class="campo">
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" required placeholder="vos@empresa.com.ar">
+          </label>
+          <label class="campo">
+            <span>WhatsApp <span class="opcional">(para el recordatorio de la última hora)</span></span>
+            <input type="tel" name="telefono" autocomplete="tel" placeholder="387 15 456 7890">
+          </label>
+          <label class="campo">
+            <span>¿Qué te gustaría que respondamos en vivo? <span class="opcional">(opcional)</span></span>
+            <textarea name="pregunta" placeholder="Contanos la búsqueda que tenés abierta y la tomamos como caso."></textarea>
+          </label>
+
+          <label class="consentimiento">
+            <input type="checkbox" name="acepto" required>
+            <span>Acepto que me escriban por el taller y sus recordatorios.
+              <a href="../../legal/politica-privacidad.html">Cómo tratamos los datos</a>.</span>
+          </label>
+
+          <button class="btn btn-primario btn-ancho btn-grande" type="submit">Reservar mi lugar</button>
+        </div>
+
+        <p class="form-ok">
+          <b>Listo: así se ve la confirmación.</b><br>
+          En la landing real, acá llega el correo con el link de Zoom y el taller queda agendado
+          en el calendario de la persona.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     7. AL FINAL DEL TALLER — la oferta que convierte asistentes en reuniones
+     ============================================================================ -->
+<section class="seccion seccion-clara centrado">
+  <div class="wrap wrap-angosto">
+    <span class="eyebrow">Después del taller</span>
+    <h2>A los que vienen les dejamos un diagnóstico sin costo</h2>
+    <p class="lead" style="margin-inline:auto;margin-top:14px">Una reunión de 30 minutos para
+      revisar la búsqueda que tengas abierta: el perfil, el rango de sueldo de la zona y por dónde
+      conviene salir a buscar. Salgas o no a trabajar con nosotros, el diagnóstico te queda.</p>
+    <div class="acciones acciones-centro" style="margin-top:26px">
+      <a class="btn btn-marca btn-grande" href="#reservar">Anotarme al taller</a>
+      <a class="btn btn-secundario" href="../01-pedido-propuesta/#contacto">Prefiero la propuesta directo</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <p style="margin-bottom:10px"><strong style="color:#fff">Talento Norte Consultores</strong> ·
+      Talleres para empresas del noroeste argentino</p>
+    <p class="legal" style="margin-top:18px">
+      Consultora <strong style="color:#D3E4EA">ficticia</strong> creada para este portafolio de
+      demostración. Testimonios y cupos de ejemplo; el formulario no envía datos.
+      <br>© <span data-anio>2026</span> ·
+      <a href="../../legal/politica-privacidad.html">Política de privacidad</a> ·
+      <a href="../../index.html">Volver a la galería</a>
+    </p>
+  </div>
+</footer>
+
+<a class="wa-flotante" data-wa href="#" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.7-.1a11 11 0 0 1-4.5-2.9 9 9 0 0 1-1.8-3c-.2-.6 0-1.2.3-1.6l.6-.7c.2-.2.5-.2.7.1l1 1.7c.1.3.1.5 0 .7l-.4.5c-.2.2-.2.4 0 .6.4.7 1.6 2 2.7 2.4.3.1.5.1.7-.1l.5-.6c.2-.2.4-.2.7-.1l1.7.9c.3.1.4.5.2.9Z"/></svg>
+</a>
+
+<div class="cta-fija">
+  <a class="btn btn-primario btn-ancho" href="#reservar">Reservar mi lugar · gratis</a>
+</div>
+
+<script src="../../assets/js/demo.js" defer></script>
+<script src="../../assets/js/nav.js" defer></script>
+</body>
+</html>
