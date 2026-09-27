@@ -93,9 +93,22 @@ try {
     try { const r = await fetch(BASE); if (r.ok) break; } catch { await dormir(250); }
   }
 
+  /* Dormir un rato fijo despues de navegar hace que la prueba falle sola cada
+     tanto: si la pagina tarda un poco mas, todavia no existe ni el body.
+     Se espera a que este lista de verdad. */
   const ir = async archivo => {
     await pag.enviar('Page.navigate', { url: BASE + archivo });
-    await dormir(1400);
+    for (let i = 0; i < 80; i++) {
+      try {
+        const { result } = await pag.enviar('Runtime.evaluate', {
+          expression: "document.readyState === 'complete' && !!document.body",
+          returnByValue: true
+        });
+        if (result.value) break;
+      } catch { /* la navegacion todavia esta cambiando de contexto */ }
+      await dormir(150);
+    }
+    await dormir(600);   /* margen para los scripts con defer */
   };
 
   const carpetas = ['01-pedido-propuesta', '02-recurso-gratuito', '03-taller-webinar', '04-candidatos'];
@@ -123,7 +136,11 @@ try {
       (i === 0 ? d.prevOff === 'true' : d.prev === prevEsperado) &&
       (i === 3 ? d.nextOff === 'true' : d.next === nextEsperado),
       `prev=${d.prev} next=${d.next}`);
-    revisar(`${carpetas[i]} · WhatsApp desde CONFIG`, !!d.wa && d.wa.startsWith('https://wa.me/'), d.wa);
+    /* Que el link exista no alcanza: un numero de relleno olvidado manda a
+       la consultora a un chat que no existe. */
+    const relleno = /wa\.me\/\d*0{6,}/.test(d.wa || '');
+    revisar(`${carpetas[i]} · WhatsApp real (no relleno)`,
+      !!d.wa && d.wa.startsWith('https://wa.me/') && !relleno, d.wa);
   }
 
   // --- Flecha del teclado ---

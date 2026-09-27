@@ -228,9 +228,9 @@ portafolio. Las landings de los clientes van en Netlify o en el alojamiento del 
 
 ## Pendientes
 
-- [ ] Correr `configurar.mjs` con el WhatsApp real y la dirección definitiva.
+- [x] WhatsApp real y dirección definitiva cargados con `configurar.mjs`.
 - [ ] Armar el PDF de la landing 02 (hoy el botón de descarga avisa que es una demo).
 - [x] Imágenes `og:` de 1200×630 para la vista previa al compartir los links.
 - [x] Ficha de una página en PDF para que el referidor la reenvíe.
 - [x] `ficha/` queda fuera del repositorio: tiene los precios y el repositorio es público.
-- [ ] Completar el WhatsApp en la ficha y volver a generar el PDF.
+- [x] WhatsApp completado en la ficha del referidor.

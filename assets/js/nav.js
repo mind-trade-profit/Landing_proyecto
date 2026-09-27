@@ -27,7 +27,7 @@
        (011) 15-3456-7890  ->  5491134567890
      ------------------------------------------------------------------------ */
   var CONTACTO = {
-    whatsapp: '5491100000000',
+    whatsapp: '5491123569119',
     mensaje:  'Hola Julián! Vi el portafolio de landings para consultoras de RR. HH. y quiero una para mi consultora.'
   };
 
